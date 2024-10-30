@@ -7,12 +7,12 @@ import Navbar from './components/Navbar';
 import SubNavbar from './components/SubNavbarShop';
 import Footer from './components/Footer';  
 
-import AdminModeratorController from './AdminModerator/Controller/Admin_Controller';
-import AdminSuperController from './AdminSuper/Controller/AdminSuper_Contoller';
-import LoginController from './Login/Controller/Login_Controller';
-import OrderController from './Order/Controller/Order_Controller';
-import ShopController from './Shop_Profile/Controller/Shop_Profile_Controller';
-import UserAccountController from './User_Account/Controller/User_Account_Controller';
+import AdminModeratorController from './Modules/AdminModerator/Controller/Admin_Controller';
+import AdminSuperController from './Modules/AdminSuper/Controller/AdminSuper_Contoller';
+import LoginController from './Modules/Login/Controller/Login_Controller';
+import OrderController from './Modules/Order/Controller/Order_Controller';
+import ShopController from './Modules/Shop_Profile/Controller/Shop_Profile_Controller';
+import UserAccountController from './Modules/User_Account/Controller/User_Account_Controller';
  
 
 function App() {

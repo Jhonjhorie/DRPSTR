@@ -1,7 +1,7 @@
 // src/pages/Home.js
 import React from 'react';
 
-import OfferCard from '../../components/OfferCard';
+import OfferCard from '../../../components/OfferCard';
 import Slider from 'react-slick';
 
 // Sample data for features and offers

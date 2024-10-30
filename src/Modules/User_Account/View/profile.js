@@ -1,7 +1,7 @@
 // src/pages/Customer/CustomerProfile.js
 import React, { useState } from 'react';
-import Avatar from '../../components/Avatar';
-import Button from '../../components/Button';
+import Avatar from '../../../components/Avatar';
+import Button from '../../../components/Button';
  
 function CustomerProfile() {
   const [profile, ] = useState({//setProfile
