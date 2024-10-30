@@ -9,7 +9,10 @@ function Navbar() {
           <div className="flex items-center space-x-4">
             <Link to="/about" className="text-white">About</Link>
             <Link to="/contact" className="text-white">Contact</Link>
-          </div>
+            
+            <Link to="/signup" className="text-white">Sign Up</Link>
+            <Link to="/login" className="text-white">Login</Link>
+           </div>
         </div>
       </nav>
     );

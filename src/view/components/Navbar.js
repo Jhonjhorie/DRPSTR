@@ -1,7 +1,7 @@
 // src/components/Navbar.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ReactComponent as Logo } from '../assets/LOGO.svg';
+import { ReactComponent as Logo } from '../../assets/LOGO.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
 
@@ -29,9 +29,10 @@ function Navbar() {
         </div>
 
         {/* Navigation Links and Icons */}
-        <div className="flex items-center space-x-5">
-          <FontAwesomeIcon icon={faShoppingCart} className="text-white text-2xl cursor-pointer" />
-          <FontAwesomeIcon icon={faUser} className="text-white text-2xl cursor-pointer" />
+        <div className="flex items-center space-x-5">             
+
+        <Link to="/cart" className="text-white"> <FontAwesomeIcon icon={faShoppingCart} className="text-white text-2xl cursor-pointer" /> </Link>
+        <Link to="/profile" className="text-white"> <FontAwesomeIcon icon={faUser} className="text-white text-2xl cursor-pointer" /> </Link>
         </div>
       </div>
     </nav>
