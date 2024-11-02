@@ -2,22 +2,24 @@ import React from 'react';
 import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Icon, Card, Button } from 'react-native-elements';
 import Header from '../components/Header';  
-import RibbonNavigation from '../components/RibbonNavigation';
+import SideBarNav from '../components/BarNav';
 
 const HomeScreen = () => {
   const ribbonItems = [
-    { label: 'Home', path: '/' },
-    { label: 'Order', path: '/(pages)/shop' }, 
+    { label: 'Home', path: '/', icon:'home' },
+    { label: 'Order', path: '/(pages)/shop', icon:'storefront' }, 
+    { label: 'Notification', path: '/(pages)/notification', icon:'notifications' }, 
+    { label: 'Account', path: '/(pages)/account', icon:'person' }, 
   ];
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#FFF' }}>  {/* Main container with flex 1 */}
+    <View className='flex-1 bg-slate-200 drop-shadow-md'> 
       <Header />
       
       <ScrollView contentContainerStyle={styles.scrollContainer}>  {/* ScrollView without flex */}
         
         {/* Ribbon Navigation */}
-        <RibbonNavigation items={ribbonItems} />
+        <SideBarNav items={ribbonItems} />
 
         {/* Banner */}
         <View style={styles.bannerContainer}>
@@ -29,7 +31,7 @@ const HomeScreen = () => {
         </View>
 
         {/* Featured Products */}
-        <View style={styles.section}>
+        {/* <View style={styles.section}>
           <Text style={styles.sectionTitle}>Featured Products</Text>
           <View style={styles.productsContainer}>
             {[1, 2, 3].map((item) => (
@@ -49,10 +51,10 @@ const HomeScreen = () => {
               </Card>
             ))}
           </View>
-        </View>
+        </View> */}
 
         {/* Deals */}
-        <View style={styles.section}>
+        {/* <View style={styles.section}>
           <Text style={styles.sectionTitle}>Exclusive Deals</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.dealsContainer}>
             {[1, 2, 3].map((deal) => (
@@ -69,7 +71,7 @@ const HomeScreen = () => {
         </View>
 
         {/* Categories */}
-        <View style={styles.section}>
+        {/* <View style={styles.section}>
           <Text style={styles.sectionTitle}>Shop by Category</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.categoriesContainer}>
             {["Men's Wear", "Women's Wear", "Electronics", "Accessories"].map((category, index) => (
@@ -79,7 +81,7 @@ const HomeScreen = () => {
               </TouchableOpacity>
             ))}
           </ScrollView>
-        </View>
+        </View> */} 
       </ScrollView>
     </View>
   );
