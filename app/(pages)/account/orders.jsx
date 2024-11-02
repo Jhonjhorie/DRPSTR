@@ -35,7 +35,7 @@ const MyOrders = () => {
         <Text className="text-green-500 font-medium mb-2">Received</Text>
         <View className="flex-row items-center mb-2">
           <Image
-            source={{ uri: 'https://via.placeholder.com/80' }} // Placeholder image URL
+            source={{ uri: 'https://via.placeholder.com/80' }} 
             className="w-20 h-20 mr-4 rounded-lg"
           />
           <View className="flex-1">
@@ -56,7 +56,7 @@ const MyOrders = () => {
         <Text className="text-green-500 font-medium mb-2">Received</Text>
         <View className="flex-row items-center mb-2">
           <Image
-            source={{ uri: 'https://via.placeholder.com/80' }} // Placeholder image URL
+            source={{ uri: 'https://via.placeholder.com/80' }}  
             className="w-20 h-20 mr-4 rounded-lg"
           />
           <View className="flex-1">

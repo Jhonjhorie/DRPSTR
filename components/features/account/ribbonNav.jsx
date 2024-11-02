@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2, // Vertical shadow offset
     },
-    shadowOpacity: .05, // Shadow opacity
+    shadowOpacity: 0.05, // Shadow opacity
     shadowRadius: 3.5, // Shadow blur radius
   },
   link: {

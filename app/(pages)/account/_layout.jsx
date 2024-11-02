@@ -7,9 +7,9 @@ import Sidebar from "@/components/features/account/sidebar";
 
 const ribbonItems = [
   { label: 'Home', path: '/', icon: 'home' },
-  { label: 'Order', path: '/(pages)/shop', icon: 'storefront' }, 
-  { label: 'Notification', path: '/(pages)/notification', icon: 'notifications' }, 
-  { label: 'Account', path: '/(pages)/account', icon: 'person' }, 
+  { label: 'Order', path: '/(pages)/shop', icon: 'storefront' },
+  { label: 'Notification', path: '/(pages)/notification', icon: 'notifications' },
+  { label: 'Account', path: '/(pages)/account', icon: 'person' },
 ];
 
 const handleSearch = (query) => {
@@ -17,21 +17,21 @@ const handleSearch = (query) => {
 };
 
 const UserLayout = () => {
-  return (    
+  return (
     <View style={styles.container}>
       {/* Header */}
       <Header onSearch={handleSearch} title="Home" />
 
-      {/* Sub-header Navigation */}
+      {/* Ribbon Navigation */}
       <RibbonNavigation items={ribbonItems} />
 
+      {/* Main Content */}
       <View style={styles.mainContent}>
-              {/* Sidebar Navigation */}
-
+        {/* Sidebar */}
         <Sidebar />
-  
+
+        {/* Stack Navigation */}
         <View style={styles.contentContainer}>
-          {/* Stack Navigation for screens */}
           <Stack screenOptions={{ headerShown: false }}>
             <Stack.Screen name="index" options={{ title: 'User Account' }} />
             <Stack.Screen name="(components)/" options={{ href: null }} />
@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
   },
   mainContent: {
     flex: 1,
-    flexDirection: 'row',  
-   },
+    flexDirection: 'row',
+  },
   contentContainer: {
     flex: 1,
   },

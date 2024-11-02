@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, Button, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native';
 
 const Wishlist = () => {
   return (
@@ -10,7 +9,7 @@ const Wishlist = () => {
 
       {/* Navigation */}
       <View className="flex-row justify-around bg-white p-3 rounded-md shadow mb-4">
-        <Text className="text-gray-800 font-semibold">My Wishlists (1)</Text>
+        <Text className="text-gray-800 font-semibold">My Wishlists</Text>
         <Text className="text-gray-600">Past Purchases</Text>
         <Text className="text-gray-600">Followed Stores</Text>
       </View>
@@ -25,24 +24,21 @@ const Wishlist = () => {
         <Text className="text-sm text-red-500 font-bold mb-1">Out of Stock</Text>
         <Text className="text-lg font-bold text-gray-800">Zorotech</Text>
 
-        <View className='flex-row'>
-
+        <View className="flex-row">
           <Image
-              source={{ uri: "https://via.placeholder.com/80" }} // Placeholder image URL
-              className="w-20 h-20 mr-4 rounded-lg"
-            />
-            <View>
-                <Text className="text-gray-700 mb-2">NOT AVAILABLE</Text>
-
-                <Text className="text-gray-700 font-medium">
-                  Zoro 2.5" SSD SATA3 128GB 256GB 512GB 1TB 2TB sata M.2 2280 B&M KEY Computer Built-In Solid State Drive Suitable For Laptop/Desktop
-                </Text>
-                <Text className="text-gray-600 mt-1">Specifications: 2.5'' SATA 512GB SSD</Text>
-                <Text className="text-lg font-semibold text-gray-800 mt-2">₱1,499.00</Text>
-                </View>
-              </View>
+            source={{ uri: "https://via.placeholder.com/80" }} // Placeholder image URL
+            className="w-20 h-20 mr-4 rounded-lg"
+          />
+          <View>
+            <Text className="text-gray-700 mb-2">NOT AVAILABLE</Text>
+            <Text className="text-gray-700 font-medium">
+              Zoro 2.5" SSD SATA3 128GB 256GB 512GB 1TB 2TB SATA M.2 2280 B&M KEY Computer Built-In Solid State Drive Suitable For Laptop/Desktop
+            </Text>
+            <Text className="text-gray-600 mt-1">Specifications: 2.5'' SATA 512GB SSD</Text>
+            <Text className="text-lg font-semibold text-gray-800 mt-2">₱1,499.00</Text>
+          </View>
         </View>
-
+      </View>
     </ScrollView>
   );
 };

@@ -18,27 +18,21 @@ const UserProfile = () => {
           {/* Email Section */}
           <View className="flex-row flex-1 items-center justify-between mb-4 px-5">
             <View>
-              <Text className="text-gray-600 font-medium">
-                Email Address{" "}| 
-                <TouchableOpacity>
-                  <Text className="text-indigo-600"> Change</Text>
-                </TouchableOpacity>
-              </Text>
-              <Text className="text-lg text-gray-900">
-                jh********@gmail.com
-              </Text>
+              <Text className="text-gray-600 font-medium">Email Address</Text>
+              <TouchableOpacity>
+                <Text className="text-indigo-600">Change</Text>
+              </TouchableOpacity>
+              <Text className="text-lg text-gray-900">jh********@gmail.com</Text>
             </View>
           </View>
 
           {/* Mobile Section */}
           <View className="flex-row flex-1 items-center justify-between mb-4">
             <View>
-              <Text className="text-gray-600 font-medium">
-                Mobile{" "} |
-                <TouchableOpacity>
-                  <Text className="text-indigo-600"> Add</Text>
-                </TouchableOpacity>
-              </Text>
+              <Text className="text-gray-600 font-medium">Mobile</Text>
+              <TouchableOpacity>
+                <Text className="text-indigo-600">Add</Text>
+              </TouchableOpacity>
               <TextInput
                 placeholder="Please enter your mobile"
                 className="text-lg text-gray-400"
@@ -67,14 +61,15 @@ const UserProfile = () => {
             />
           </View>
         </View>
+
         {/* Action Buttons */}
         <View className="flex-row justify-between mt-10">
           <TouchableOpacity className="bg-indigo-600 w-60 py-2 px-4 rounded-md flex-1">
-            <Text className="text-white font-medium">Edit</Text>
+            <Text className="text-white font-medium text-center">Edit</Text>
           </TouchableOpacity>
           <View className="px-5"></View>
           <TouchableOpacity className="bg-gray-600 w-56 py-2 px-4 rounded-md flex-1">
-            <Text className="text-white font-medium">Set Password</Text>
+            <Text className="text-white font-medium text-center">Set Password</Text>
           </TouchableOpacity>
         </View>
       </View>
