@@ -1,7 +1,7 @@
 // /features/User/UserAccount.js
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-
+import React from 'react'; 
+import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { Icon, Card, Button } from 'react-native-elements'; 
 const Account = () => {
   return (
     <View style={styles.container}>
