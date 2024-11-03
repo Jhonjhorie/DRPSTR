@@ -18,7 +18,7 @@ const LogIn = () => {
 
     return (
       <ImageBackground
-      source={{ uri: '/assets/images/bgForAdmin.jpg' }}
+      source={{ uri: '/assets/images/bgForAdmin.png' }}
       style={styles.background}
       resizeMode="cover"
       >
