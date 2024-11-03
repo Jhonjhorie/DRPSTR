@@ -1,28 +1,21 @@
  import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { red } from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
+import ShopSidebar from './Shopsidebar';
 
 const Shop = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Shop Page</Text>
-      {/* Add additional content here */}
+    <View className="bg-white h-full flex flex-row">
+      {/* Left Sidebar */}
+      <ShopSidebar/>
+      
+      {/* Main Content Area */}
+      <View className="bg-slate-200 h-full w-[80%]">
+        {/* Add main content here */}
+      </View>
     </View>
- 
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-});
-
  
 
 export default Shop;

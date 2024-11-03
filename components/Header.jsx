@@ -19,7 +19,7 @@ const Header= () => {
     const targetWidth = isFocused ? containerWidth * 0.8 : containerWidth * 0.2;
     return {
       width: withTiming(targetWidth, {
-        duration: 450,
+        duration: 350,
         easing: Easing.bezier(0.25, 0.5, 0.7, 0.94),
       }),
     };
@@ -27,7 +27,7 @@ const Header= () => {
 
   return (
     <View 
-    className="flex-row items-center max-h-20 px-16 py-12 bg-slate-100 sticky">
+    className="flex-row items-center max-h-20 px-16 py-12 bg-slate-300 sticky">
       {/* Website Name */}
       <View>
         <Link href="/" asChild>
