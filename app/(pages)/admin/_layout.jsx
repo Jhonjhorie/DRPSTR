@@ -2,13 +2,13 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Link, Stack } from 'expo-router';
-
 import Header from '@/components/Header';
 import RibbonNavigation from '@/components/BarNav';
 
 const ribbonItems = [
-  { label: 'Home', path: '/' },
-  { label: 'Order', path: '/(pages)/shop' }, 
+  { label: 'Home', path: '/admin/home' },
+  { label: 'Review', path: '/admin/review' }, 
+  { label: 'Reports', path: '/admin/reports' },
 ];
 const handleSearch = (query) => {
   console.log("Search query:", query);
