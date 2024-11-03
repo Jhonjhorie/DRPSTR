@@ -21,27 +21,46 @@ const Account = () => {
 
       {/* Profile Section */}
       <View className="flex-row justify-between mb-6">
-        <View className="flex-1 mr-5 bg-gray-100 p-4 rounded-lg">
-          <View className="flex-row justify-between mb-1">
-            <Text className="text-lg font-semibold text-gray-800">
-              Personal Profile
-            </Text>
-            <Link href="/account/edit">
-              <Text className="text-indigo-600">Edit Profile</Text>
-            </Link>
-          </View>
-          <View className="flex-row items-center mt-2">
-            <Image
-              source={{ uri: "https://via.placeholder.com/80" }}
-              style={{ width: 80, height: 80, borderRadius: 40 }}
-              className="mr-4 bg-gray-300"
-            />
-            <View>
-              <Text className="text-gray-600">Behnigno Ahuilar</Text>
-              <Text className="text-gray-600">Beh@example.com</Text>
-            </View>
-          </View>
-        </View>
+        
+ <View className="flex-1 mr-5 bg-gray-100 p-4 rounded-lg">
+  <View className="flex-row justify-between mb-1">
+    <Text className="text-lg font-semibold text-gray-800">
+      Personal Profile
+    </Text>
+    <Link href="/account/edit">
+      <Text className="text-indigo-600">Edit Profile</Text>
+    </Link>
+  </View>
+
+   <View className="flex-row items-center mt-2">
+    <Image
+      source={{ uri: "https://via.placeholder.com/80" }}
+      style={{ width: 80, height: 80, borderRadius: 40 }}
+      className="mr-4 bg-gray-300"
+    />
+    <View>
+      <Text className="text-gray-600">Behnigno Ahuilar</Text>
+      <Text className="text-gray-600">Beh@example.com</Text>
+    </View>
+  </View>
+
+  {/* Edit Buttons */}
+  <View className="flex-row justify-end ">
+ 
+    <TouchableOpacity
+      className="bg-indigo-600 p-2 rounded-lg"
+      onPress={() => {
+        // handle Edit Avatar action
+      }}
+    >
+      <Text className="text-white font-semibold">Edit Avatar</Text>
+    </TouchableOpacity>
+  </View>
+
+
+
+</View>
+
 
         {/* Address Book Section */}
         <View className="flex-1 bg-gray-100 p-4 rounded-lg">

@@ -50,6 +50,9 @@ const Sidebar = () => {
           <Link href="/(pages)/account/wow">
             <Text className="text-gray-900 text-base py-1">Set up Shop</Text>
           </Link>
+          <Link href="/(pages)/account/avatar">
+            <Text className="text-gray-900 text-base py-1">Avatar</Text>
+          </Link>
         </View>   
 
         {/* Logout Button Positioned at Bottom */}
