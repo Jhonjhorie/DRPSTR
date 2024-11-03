@@ -30,7 +30,7 @@ export default function CartPage() {
   const updateQuantity = (id, amount) => {
     setCartItems((prevItems) =>
       prevItems.map((item) =>
-        item.id === id ? { ...item, quantity: Math.max(1, item.quantity + amount) } : item
+        item.id === id ? { ...item, quantity: Math.max(1, (item.quantity || 1) + amount) } : item
       )
     );
   };
@@ -45,7 +45,7 @@ export default function CartPage() {
       <Text className="text-2xl font-bold mb-4">Your Cart</Text>
 
       {cartItems.map((item) => (
-        <View key={item.id} className="flex-row items-center bg-white p-4 mb-4 rounded-lg shadow">
+        <View key={item.id} className="flex-row items-center bg-white p-4 mb-4 rounded-lg" style={{ boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)' }}>
           {/* Product Image */}
           <Image source={{ uri: item.image }} className="w-20 h-20 rounded" />
 
@@ -74,7 +74,7 @@ export default function CartPage() {
       ))}
 
       {/* Total Price */}
-      <View className="p-4 bg-white rounded-lg shadow mb-4">
+      <View className="p-4 bg-white rounded-lg" style={{ boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)' }}>
         <Text className="text-lg font-semibold">Total: ${calculateTotal()}</Text>
       </View>
 

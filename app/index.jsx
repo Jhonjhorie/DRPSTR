@@ -6,17 +6,17 @@ import SideBarNav from '../components/BarNav';
 
 const HomeScreen = () => {
   const ribbonItems = [
-    { label: 'Home', path: '/', icon:'home' },
-    { label: 'Order', path: '/(pages)/shop', icon:'storefront' }, 
-    { label: 'Notification', path: '/(pages)/notification', icon:'notifications' }, 
-    { label: 'Account', path: '/(pages)/account', icon:'person' }, 
+    { label: 'Home', path: '/', icon: 'home' },
+    { label: 'Order', path: '/(pages)/shop', icon: 'storefront' }, 
+    { label: 'Notification', path: '/(pages)/notification', icon: 'notifications' }, 
+    { label: 'Account', path: '/(pages)/account', icon: 'person' }, 
   ];
 
   return (
-    <View className='flex-1 bg-slate-200 drop-shadow-md'> 
+    <View style={styles.container}> 
       <Header />
       
-      <ScrollView contentContainerStyle={styles.scrollContainer}>  {/* ScrollView without flex */}
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
         
         {/* Ribbon Navigation */}
         <SideBarNav items={ribbonItems} />
@@ -30,6 +30,7 @@ const HomeScreen = () => {
           />
         </View>
 
+        {/* Uncomment sections as needed */}
         {/* Featured Products */}
         {/* <View style={styles.section}>
           <Text style={styles.sectionTitle}>Featured Products</Text>
@@ -68,7 +69,7 @@ const HomeScreen = () => {
               </Card>
             ))}
           </ScrollView>
-        </View>
+        </View> */}
 
         {/* Categories */}
         {/* <View style={styles.section}>
@@ -90,9 +91,17 @@ const HomeScreen = () => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#e2e8f0',
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
   scrollContainer: {
-
-    paddingBottom: 16,  // Extra space at the bottom for scrollable content
+    paddingBottom: 16,
   },
   bannerContainer: {
     height: 180,
