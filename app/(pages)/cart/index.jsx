@@ -104,7 +104,7 @@ export default function CartPage() {
   const updateQuantity = (id, amount) => {
     setCartItems((prevItems) =>
       prevItems.map((item) =>
-        item.id === id ? { ...item, quantity: Math.max(1, item.quantity + amount) } : item
+        item.id === id ? { ...item, quantity: Math.max(1, (item.quantity || 1) + amount) } : item
       )
     );
   };
@@ -118,6 +118,7 @@ export default function CartPage() {
     <ScrollView className="flex-1 p-4 bg-gray-100">
       <Text className="text-2xl font-bold mb-4">Your Cart</Text>
 
+ 
       {/* Select All Checkbox */}
       <View className='flex-row items-center bg-white p-4 mb-4 rounded-lg shadow'>
         <CheckBox
@@ -143,6 +144,7 @@ export default function CartPage() {
             />
             <Text className="text-xl font-bold ml-2">{group.shopName}</Text>
           </View>
+ 
 
           {group.items.map((item) => (
             <View key={item.id} className="flex-row items-center mt-2">
@@ -184,7 +186,7 @@ export default function CartPage() {
         </View>
       ))}
 
-      <View className="flex flex-col place-items-end sticky z-100 bottom-0 p-4 bg-white rounded-lg shadow mb-4">
+       <View className="flex flex-col place-items-end sticky z-100 bottom-0 p-4 bg-white rounded-lg shadow mb-4">
         {/* Total Price */}
         <View className="">
           <Text className="text-lg font-semibold">Total: ${calculateTotal()}</Text>
@@ -193,6 +195,7 @@ export default function CartPage() {
         <TouchableOpacity className="bg-purple-700 rounded-lg p-2 items-center w-[7rem]">
           <Text className="text-white text-lg font-semibold">Checkout</Text>
         </TouchableOpacity>
+ 
       </View>
     </ScrollView>
   );

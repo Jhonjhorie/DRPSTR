@@ -33,9 +33,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
+    
   },
   content: {
     marginTop: 6,
     marginLeft: 24,
+    
   },
 });
