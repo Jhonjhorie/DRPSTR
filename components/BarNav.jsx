@@ -6,15 +6,15 @@ import { Ionicons } from '@expo/vector-icons';
 
 const SideBarNav = ({ items }) => {
   return (
-    <View className="flex-column items-center justify-center bg-slate-50 rounded-md w-12 sticky top-52 left-2 z-10 drop-shadow-sm">
+    <View className="flex flex-column  justify-center bg-slate-50 p-2 rounded-md w-9 sticky z-10 drop-shadow-sm mt-[25vh] left-2 hover:w-48 duration-300 transition-all overflow-hidden">
       {items.map((item, index) => (
         <Link
           key={index}
           href={item.path}
-          className="flex items-center p-3 mx-2 rounded-md"
+          className="flex gap-4 py-2 rounded-md group"
         >
-          <Ionicons name={item.icon} className='color-slate-500 hover:color-primary-color' size={18}/>
-          {/* <Text className="text-white text-sm font-semibold">{item.label}</Text> */}
+          <Ionicons name={item.icon} className='color-slate-500 group-hover:color-primary-color' size={20}/>
+          <Text className="text-slate-500 text-sm font-semibold group-hover:text-primary-color group-hover:font-bold">{item.label}</Text>
         </Link>
       ))}
     </View>

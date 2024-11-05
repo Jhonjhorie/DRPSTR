@@ -13,22 +13,14 @@ const HomeScreen = () => {
   ];
 
   return (
-    <View style={styles.container}> 
+    <View className='bg-slate-300 h-full w-full'> 
       <Header />
-      
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
+
+      <ScrollView className='pb-4'>
         
         {/* Ribbon Navigation */}
         <SideBarNav items={ribbonItems} />
 
-        {/* Banner */}
-        <View style={styles.bannerContainer}>
-          <Image
-            source={{ uri: 'https://example.com/banner-image.jpg' }}
-            style={styles.bannerImage}
-            resizeMode="cover"
-          />
-        </View>
 
         {/* Uncomment sections as needed */}
         {/* Featured Products */}
@@ -89,100 +81,3 @@ const HomeScreen = () => {
 };
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#e2e8f0',
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  scrollContainer: {
-    paddingBottom: 16,
-  },
-  bannerContainer: {
-    height: 180,
-    marginVertical: 10,
-  },
-  bannerImage: {
-    width: '100%',
-    height: '100%',
-    borderRadius: 8,
-  },
-  section: {
-    marginVertical: 16,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    paddingLeft: 16,
-    color: '#333',
-  },
-  categoriesContainer: {
-    flexDirection: 'row',
-    padding: 8,
-  },
-  categoryCard: {
-    width: 100,
-    alignItems: 'center',
-    padding: 10,
-    backgroundColor: '#E0F7FA',
-    borderRadius: 8,
-    marginHorizontal: 8,
-  },
-  categoryText: {
-    marginTop: 8,
-    fontSize: 14,
-    color: '#333',
-  },
-  productsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap',
-    padding: 8,
-  },
-  productCard: {
-    width: '45%',
-    padding: 10,
-    borderRadius: 8,
-  },
-  productImage: {
-    width: '100%',
-    height: 120,
-  },
-  productName: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginVertical: 4,
-  },
-  productPrice: {
-    fontSize: 14,
-    color: '#888',
-    marginBottom: 10,
-  },
-  button: {
-    backgroundColor: '#4CAF50',
-  },
-  dealsContainer: {
-    paddingHorizontal: 8,
-  },
-  dealCard: {
-    width: 150,
-    padding: 10,
-    marginHorizontal: 8,
-    borderRadius: 8,
-  },
-  dealImage: {
-    width: '100%',
-    height: 100,
-  },
-  dealText: {
-    marginTop: 8,
-    fontSize: 14,
-    color: '#333',
-    fontWeight: 'bold',
-  },
-});
