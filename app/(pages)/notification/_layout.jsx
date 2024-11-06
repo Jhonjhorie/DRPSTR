@@ -26,7 +26,7 @@ const notifLayout = () => {
    
         {/* Sub-header Navigation */}
         <View style={styles.ribbonStyle} >
-        <RibbonNavigation items={ribbonItems} />
+        <RibbonNavigation items={ribbonItems} activeName={'Notification'}/>
       </View>
       
         {/* Stack Navigation for screens */}
