@@ -8,7 +8,7 @@ const Header= () => {
 
   return (
     <View 
-    className="flex-row items-center max-h-20 px-16 py-12 bg-slate-50 sticky top-0">
+    className="flex-row items-center max-h-20 px-16 py-12 bg-slate-50 sticky top-0 z-30">
       {/* Website Name */}
       <View>
         <Link href="/" asChild>
