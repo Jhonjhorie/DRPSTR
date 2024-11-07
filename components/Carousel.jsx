@@ -60,9 +60,14 @@ const Carousel = ({ images }) => {
                 {item.rate}
               </Text>
             )}
+            {item.shop && (
+              <Text className='absolute top-4 left-4 text-secondary-color text-2xl font-bold'>
+                {item.shop}
+              </Text>
+            )}
             <Link
             href='/'
-            className='flex flex-row absolute bottom-[-24px] group-hover:bottom-0 transition-all duration-300 right-4 bg-primary-color px-8 justify-end gap-2 rounded-t-md'
+            className='flex flex-row absolute bottom-[-24px] group-hover:bottom-0 transition-all duration-300 right-8 bg-primary-color px-8 items-end justify-end gap-2 rounded-t-md'
             >
                <Text className=' text-secondary-color text-xl font-bold'>
                 TAP TO DRIP</Text>
@@ -75,7 +80,9 @@ const Carousel = ({ images }) => {
             className='-z-10 absolute left-3 top-0 opacity-30'
             resizeMode="contain"/>
       {/* Pagination Dots */}
-      <View style={{ position: 'absolute', bottom: 8, left: '50%', transform: [{ translateX: -((images.length * 10) / 2) }], flexDirection: 'row' }}>
+      <View style={{ transform: [{ translateX: -((images.length * 10) / 2) }] }}
+      className='left-16 absolute bottom-1 flex flex-row'
+      >
         {images.map((_, index) => (
           <View
             key={index}
@@ -84,23 +91,23 @@ const Carousel = ({ images }) => {
               height: 8,
               borderRadius: 4,
               margin: 4,
-              backgroundColor: activeIndex === index ? 'white' : 'rgba(255, 255, 255, 0.5)',
             }}
+            className={`${activeIndex === index ? 'bg-primary-color' : 'bg-secondary-color'}`}
           />
         ))}
       </View>
 
       {/* Left Arrow */}
       {activeIndex > 0 && (
-        <TouchableOpacity onPress={handlePrev} style={{ position: 'absolute', top: '50%', left: 8, transform: [{ translateY: -16 }], padding: 8, backgroundColor: 'rgba(0, 0, 0, 0.5)', borderRadius: 16 }}>
-          <Ionicons name="chevron-back" size={24} color="#fff" />
+        <TouchableOpacity onPress={handlePrev} style={{top: '40%', left: -20}} className='absolute top-1/2 hover:opacity-100 opacity-80 transition-all duration-300 left-1 p-1 rounded-lg bg-secondary-color'>
+          <Ionicons name="chevron-back" size={28} className='color-primary-color'/>
         </TouchableOpacity>
       )}
 
       {/* Right Arrow */}
       {activeIndex < images.length - 1 && (
-        <TouchableOpacity onPress={handleNext} style={{ position: 'absolute', top: '50%', right: 8, transform: [{ translateY: -16 }], padding: 8, backgroundColor: 'rgba(0, 0, 0, 0.5)', borderRadius: 16 }}>
-          <Ionicons name="chevron-forward" size={24} color="#fff" />
+        <TouchableOpacity onPress={handleNext} style={{top: '40%', right: -20}} className='absolute top-1/2 hover:opacity-100 opacity-80 transition-all duration-300  p-1 rounded-lg bg-secondary-color'>
+          <Ionicons name="chevron-forward" size={28} className='color-primary-color' />
         </TouchableOpacity>
       )}
     </View>

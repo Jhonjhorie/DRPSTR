@@ -3,16 +3,16 @@ import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity } from 'rea
 import { Icon, Card, Button } from 'react-native-elements'; 
 import SideBarNav from '../components/BarNav';
 import Carousel from '@/components/Carousel';
-import { Link } from 'expo-router';
+
 
 const HomeScreen = () => {
   const activePage = "Home";
  
   const Images = [
-    { product: "Leather Mercedez", rate: 4.8, url:  require('@/assets/images/home/brownShoes.png') },
-    { product: "Viscount Blank", rate: 4.1, url: require('@/assets/images/home/blackTshirt.png') },  
-    { product: "Runner Jump", rate: 3, url:  require('@/assets/images/home/orangeShoes.png') },  
-    { product: "Retro Vans", rate: 4.4, url:  require('@/assets/images/home/greyShoe.png') },  
+    { product: "Leather Mercedez", rate: 4.8, shop:'Aest', url:  require('@/assets/images/home/brownShoes.png') },
+    { product: "Viscount Blank", rate: 4.1, shop:'Viscount', url: require('@/assets/images/home/blackTshirt.png') },  
+    { product: "Runner Jump", rate: 3, shop:'Nike', url:  require('@/assets/images/home/orangeShoes.png') },  
+    { product: "Retro Vans", rate: 4.4, shop:'Vans', url:  require('@/assets/images/home/greyShoe.png') },  
 
   ];
 
