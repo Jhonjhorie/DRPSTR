@@ -6,7 +6,7 @@ import { Link } from 'expo-router';
 const Carousel = ({ images }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const flatListRef = useRef(null);
-  const carouselWidth = 500; // Set a fixed width for the carousel container
+  const carouselWidth = 800; // Set a fixed width for the carousel container
   const carouselHeight = 300; // Set a fixed height for the carousel container
 
   
@@ -51,7 +51,7 @@ const Carousel = ({ images }) => {
             className='z-20 group-hover:scale-90 duration-300 transition-all left-0 absolute group-hover:left-24'
             resizeMode="contain"/>
             {item.product && (
-             <Text className='absolute bottom-6 left-0 text-secondary-color text-8xl font-bold'>
+             <Text className='absolute bottom-8  left-0 text-secondary-color text-8xl font-bold group-hover:text-5xl line-clamp-1 group-hover:text-primary-color  group-hover:z-50 duration-300 transition-all'>
                 {item.product}
               </Text>
             )}
@@ -61,17 +61,22 @@ const Carousel = ({ images }) => {
               </Text>
             )}
             {item.shop && (
-              <Text className='absolute top-4 left-4 text-secondary-color text-2xl font-bold'>
+              <Link href='/'
+              className=' absolute top-2 group-hover:top-0 left-0  hover:bg-primary-color bg-secondary-color p-3 group-hover:p-4 rounded-r-lg duration-300 transition-all '
+              >
+                <Text className=' group-hover:text-2xl text-lg font-bold text-slate-50 duration-300 transition-all '>
                 {item.shop}
-              </Text>
+                </Text>
+              </Link>
+              
             )}
             <Link
             href='/'
-            className='flex flex-row absolute bottom-[-24px] group-hover:bottom-0 transition-all duration-300 right-8 bg-primary-color px-8 items-end justify-end gap-2 rounded-t-md'
+            className='flex flex-row absolute bottom-[-24px] group-hover:bottom-0 transition-all duration-300 right-8 bg-secondary-color px-8 items-end justify-end gap-2 rounded-t-md hover:bg-primary-color'
             >
-               <Text className=' text-secondary-color text-xl font-bold'>
+               <Text className='text-xl font-bold text-slate-50'>
                 TAP TO DRIP</Text>
-                <Ionicons name='cart' className='color-secondary-color' size={24}></Ionicons>
+                <Ionicons name='cart' className='color-slate-50' size={24}></Ionicons>
             </Link>
           </View>
         )}
