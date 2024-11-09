@@ -1,14 +1,30 @@
-import React, { useState, useRef } from 'react';
-import { FlatList, Image, Text, View, TouchableOpacity } from 'react-native';
+import React, { useState, useRef, useEffect } from 'react';
+import { Dimensions, FlatList, Image, Text, View, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Link } from 'expo-router';
 
+const { width: screenWidth } = Dimensions.get('window');
+
+const getResponsiveCarouselWidth = (width) => {
+  if (width >= 1024) return width * 0.6; 
+  if (width >= 768) return width * 0.8;  
+  return width * 0.9;                    
+};
+
 const Carousel = ({ images }) => {
+  const [carouselWidth, setCarouselWidth] = useState(getResponsiveCarouselWidth(screenWidth));
   const [activeIndex, setActiveIndex] = useState(0);
   const flatListRef = useRef(null);
-  const carouselWidth = 800; // Set a fixed width for the carousel container
   const carouselHeight = 300; // Set a fixed height for the carousel container
+  useEffect(() => {
+    const updateDimensions = () => {
+      const newWidth = Dimensions.get('window').width;
+      setCarouselWidth(getResponsiveCarouselWidth(newWidth));
+    };
 
+    Dimensions.addEventListener('change', updateDimensions);
+    return () => Dimensions.removeEventListener('change', updateDimensions);
+  }, []);
   
   const handleScroll = (event) => {
     const contentOffsetX = event.nativeEvent.contentOffset.x;
