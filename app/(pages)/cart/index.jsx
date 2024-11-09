@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, ScrollView, CheckBox } from 'react-native';
+import { View, Text, Image, TouchableOpacity, ScrollView, CheckBox, Alert, Modal } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function CartPage() {
@@ -30,6 +30,22 @@ export default function CartPage() {
       image: 'https://via.placeholder.com/80',
     },
     {
+      id: 2.1,
+      name: 'Product 3.1',
+      price: 45.00,
+      quantity: 2,
+      shopName: 'Shop 2',
+      image: 'https://via.placeholder.com/80',
+    },
+    {
+      id: 2.2,
+      name: 'Product 3.2',
+      price: 45.00,
+      quantity: 2,
+      shopName: 'Shop 2',
+      image: 'https://via.placeholder.com/80',
+    },
+    {
       id: 3,
       name: 'Product 4',
       price: 45.00,
@@ -47,10 +63,11 @@ export default function CartPage() {
     },
   ]);
 
-  // State to manage selected items
+  // State for selected items and modal visibility
   const [selectedItems, setSelectedItems] = useState([]);
+  const [isModalVisible, setModalVisible] = useState(false);
 
-  // Group items by shopName
+  // Group cart items by shop and calculate total quantity and price
   const groupedItems = cartItems.reduce((acc, item) => {
     const key = item.shopName;
     if (!acc[key]) {
@@ -67,9 +84,10 @@ export default function CartPage() {
     return acc;
   }, {});
 
+  // Convert groupedItems object to an array for easier rendering
   const groupedItemsArray = Object.values(groupedItems);
 
-  // Toggle checkbox selection for individual items
+  // Function to toggle selection of individual cart items
   const toggleSelectItem = (id) => {
     setSelectedItems((prevSelected) =>
       prevSelected.includes(id)
@@ -78,21 +96,23 @@ export default function CartPage() {
     );
   };
 
-  // Toggle checkbox selection for all items in a shop
+  // Function to toggle selection of all items in a specific shop
   const toggleSelectShopItems = (shopName) => {
-    const shopItems = groupedItems[shopName].items.map(item => item.id);
-    const isSelected = selectedItems.filter(id => shopItems.includes(id)).length === shopItems.length;
-
-    if (isSelected) {
-      // Unselect if all were selected
-      setSelectedItems(prevSelected => prevSelected.filter(itemId => !shopItems.includes(itemId)));
+    const itemsInShop = cartItems.filter((item) => item.shopName === shopName);
+    const allSelected = itemsInShop.every((item) => selectedItems.includes(item.id));
+    if (allSelected) {
+      setSelectedItems((prevSelected) =>
+        prevSelected.filter((itemId) => !itemsInShop.some((item) => item.id === itemId))
+      );
     } else {
-      // Select all items of that shop
-      setSelectedItems(prevSelected => [...new Set([...prevSelected, ...shopItems])]);
+      setSelectedItems((prevSelected) => [
+        ...prevSelected,
+        ...itemsInShop.map((item) => item.id),
+      ]);
     }
   };
 
-  // Calculate total price of selected items
+  // Function to calculate the total price of selected items
   const calculateTotal = () => {
     return cartItems
       .filter((item) => selectedItems.includes(item.id))
@@ -100,33 +120,28 @@ export default function CartPage() {
       .toFixed(2);
   };
 
-  // Function to increase or decrease quantity
-  const updateQuantity = (id, amount) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id ? { ...item, quantity: Math.max(1, (item.quantity || 1) + amount) } : item
-      )
-    );
-  };
-
-  // Function to remove item
-  const removeItem = (id) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  // Handle checkout action and show alert if no items are selected
+  const handleCheckout = () => {
+    if (selectedItems.length === 0) {
+      Alert.alert("Please select a product first.");
+      return;
+    }
+    setModalVisible(true);  // Show modal if items are selected
   };
 
   return (
     <ScrollView className="flex-1 p-4 bg-gray-100">
+      {/* Header */}
       <Text className="text-2xl font-bold mb-4">Your Cart</Text>
 
- 
-      {/* Select All Checkbox */}
+      {/* Select All checkbox */}
       <View className='flex-row items-center bg-white p-4 mb-4 rounded-lg shadow'>
         <CheckBox
           value={selectedItems.length === cartItems.length}
           onValueChange={() =>
             setSelectedItems(
               selectedItems.length === cartItems.length
-                ? []
+                ? []  // Unselect all if everything is selected
                 : cartItems.map((item) => item.id)
             )
           }
@@ -134,69 +149,91 @@ export default function CartPage() {
         <Text className="text-lg font-semibold ml-2">Select All</Text>
       </View>
 
-      {/* Render grouped items */}
+      {/* Render grouped items by shop */}
       {groupedItemsArray.map((group) => (
         <View key={group.shopName} className="bg-white p-4 mb-4 rounded-lg shadow">
           <View className="flex-row items-center">
             <CheckBox
               value={selectedItems.filter(id => group.items.some(item => item.id === id)).length === group.items.length}
-              onValueChange={() => toggleSelectShopItems(group.shopName)}
+              onValueChange={() => toggleSelectShopItems(group.shopName)} // Toggle all items in the shop
             />
             <Text className="text-xl font-bold ml-2">{group.shopName}</Text>
           </View>
- 
 
+          {/* Render items within each shop */}
           {group.items.map((item) => (
             <View key={item.id} className="flex-row items-center mt-2">
-              {/* Checkbox */}
               <CheckBox
-                value={selectedItems.includes(item.id)}
-                onValueChange={() => toggleSelectItem(item.id)}
+                value={selectedItems.includes(item.id)}  // Check if item is selected
+                onValueChange={() => toggleSelectItem(item.id)}  // Toggle individual item selection
               />
-
-              {/* Product Image */}
               <Image source={{ uri: item.image }} className="w-20 h-20 rounded ml-2" />
-
-              {/* Product Info */}
               <View className="flex-1 ml-4">
                 <Text className="text-lg font-semibold">{item.name}</Text>
                 <Text className="text-gray-600">${item.price.toFixed(2)}</Text>
-
-                {/* Quantity Selector */}
-                <View className="flex-row items-center mt-2">
-                  <TouchableOpacity onPress={() => updateQuantity(item.id, -1)} className="p-2">
-                    <Ionicons name="remove-circle-outline" size={24} color="gray" />
-                  </TouchableOpacity>
-                  <Text className="mx-2 text-lg">{item.quantity}</Text>
-                  <TouchableOpacity onPress={() => updateQuantity(item.id, 1)} className="p-2">
-                    <Ionicons name="add-circle-outline" size={24} color="gray" />
-                  </TouchableOpacity>
-                </View>
+                <Text className="text-gray-600">Quantity: {item.quantity}</Text>
               </View>
-
-              {/* Remove Button */}
-              <TouchableOpacity onPress={() => removeItem(item.id)} className="p-2">
-                <Ionicons name="trash-outline" size={24} color="red" />
-              </TouchableOpacity>
             </View>
           ))}
-          <Text className="mt-2 font-semibold">
-            Total Quantity: {group.totalQuantity} | Total Price: ${group.totalPrice.toFixed(2)}
-          </Text>
         </View>
       ))}
 
-       <View className="flex flex-col place-items-end sticky z-100 bottom-0 p-4 bg-white rounded-lg shadow mb-4">
-        {/* Total Price */}
-        <View className="">
-          <Text className="text-lg font-semibold">Total: ${calculateTotal()}</Text>
-        </View>
-        {/* Checkout Button */}
-        <TouchableOpacity className="bg-purple-700 rounded-lg p-2 items-center w-[7rem]">
+      {/* Checkout and Total Container */}
+      <View className="flex items-end p-4 bg-white rounded-lg shadow mb-4 sticky bottom-0 z-50">
+        <Text className="text-lg font-semibold">Total: ${calculateTotal()}</Text>
+        <TouchableOpacity onPress={handleCheckout} className="bg-purple-700 rounded-lg p-2 mt-2 w-[7rem] items-center">
           <Text className="text-white text-lg font-semibold">Checkout</Text>
         </TouchableOpacity>
- 
       </View>
+
+      {/* Checkout Modal */}
+      <Modal visible={isModalVisible} animationType="slide" transparent={true}>
+        <View className="flex-1 justify-center items-center bg-black bg-opacity-50">
+          <View className="bg-white p-6 rounded-lg w-[90%]">
+            {/* Modal Header with Close Button */}
+            <View className="flex-row justify-between items-center mb-4">
+              <Text className="text-2xl font-bold">Order Summary</Text>
+              <TouchableOpacity onPress={() => setModalVisible(false)}>
+                <Ionicons name="close" size={24} color="purple" />
+              </TouchableOpacity>
+            </View>
+
+            {/* Grouped Order Summary */}
+            {groupedItemsArray
+              .filter(group => group.items.some(item => selectedItems.includes(item.id)))  // Filter selected items
+              .map((group) => (
+                <View key={group.shopName} className="mb-4">
+                  <Text className="text-xl font-semibold mb-2">{group.shopName}</Text>
+                  {group.items
+                    .filter((item) => selectedItems.includes(item.id))  // Only show selected items
+                    .map((item) => (
+                      <View key={item.id} className="flex-row justify-between my-2">
+                        <Text>{item.name} (x{item.quantity})</Text>
+                        <Text>${(item.price * item.quantity).toFixed(2)}</Text>
+                      </View>
+                    ))}
+                </View>
+              ))}
+
+            {/* Total Price */}
+            <Text className="text-lg font-semibold mt-4">
+              Total Price: ${calculateTotal()}
+            </Text>
+
+            {/* Add Order Button */}
+            <TouchableOpacity
+              onPress={() => {
+                // Handle order confirmation here
+                Alert.alert("Order added successfully!");  // Simulating order submission
+                setModalVisible(false);  // Close modal after order
+              }}
+              className="bg-green-600 rounded-lg p-2 mt-6 items-center"
+            >
+              <Text className="text-white text-lg font-semibold">Add Order</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </ScrollView>
   );
 }
