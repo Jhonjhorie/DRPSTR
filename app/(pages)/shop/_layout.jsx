@@ -16,8 +16,6 @@ const ShopLayout = () => {
   return (
     <View style={styles.container}>
       {/* Header */}
-        <Header/>
- 
       {/* Sub-header Navigation */}
       {/*<RibbonNavigation items={ribbonItems} />*/}
  

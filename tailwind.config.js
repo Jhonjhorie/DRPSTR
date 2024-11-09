@@ -14,7 +14,14 @@ module.exports = {
         "primary-color": "var(--primary-color)",
         "secondary-color": "var(--secondary-color)"
       },
+      clipPath: {
+        'pentagon': 'pentagon(61% 0, 100% 42%, 100% 100%, 0 100%, 0 0)',
+
+        'polygon': 'polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-clip-path'),
+  ],
 }
