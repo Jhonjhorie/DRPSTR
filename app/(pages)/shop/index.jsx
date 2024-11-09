@@ -7,18 +7,34 @@ import { Ionicons } from '@expo/vector-icons';
 const Shop = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isModalVisible2, setIsModalVisible2] = useState(false);
+    const [imageUri, setImageUri] = useState(null);
 
+    // MODAL
     const toggleModal = () => {
       setIsModalVisible(!isModalVisible);
     };
     const toggleModal2 = () => {
     setIsModalVisible2(!isModalVisible2);
     };
-
+    //upload image to the view
+    const handleImageChange = (event) => {
+      const file = event.target.files[0]; 
+      if (file) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setImageUri(reader.result); 
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+    //cancel upload photo
+    const clearImageSelection = () => {
+      setImageUri(null);
+    };
   return (
 
 
-    <View className='h-full w-full '>
+    <View className='h-full w-full bg-custom1 '>
         {/* Modal */}
         <Modal
             transparent={true} 
@@ -27,8 +43,8 @@ const Shop = () => {
             onRequestClose={toggleModal} 
         >
 
-        <View className='flex-1 justify-center items-center h-auto bg-black bg-opacity-50'>
-            <View className='w-[30%] h-[45%] bg-white  rounded-lg p-6 shadow-lg'>
+        <View className='flex-1 justify-center items-center   bg-black bg-opacity-50'>
+            <View className=' h-auto w-[50%] bg-white  rounded-lg p-6 shadow-lg'>
                 <View className='h-[20%] w-[20%] left-0 -mt-2 ml-3 absolute justify-end'>
                     <Image
                         className="object-fit"
@@ -39,11 +55,32 @@ const Shop = () => {
                 </View>
             <Text className='text-right mb-5 font-bold text-lg  '>  <Ionicons name="storefront" size={25} className="mr-2 align-middle " /> SIGN UP</Text>
             <Text className='mt-7 text-right right-3 '>Become a dripstr <span className='font-semibold'>MERCHANT </span></Text>
-                <input placeholder='USERNAME' className=' border-2 rounded-md p-2 border-violet-950 m-2' type="text"/>
-                <input placeholder='PASSWORD' className=' border-2 rounded-md p-2 border-violet-950 m-2 mb-5' type="password" />
 
-            
-                <View className='flex-row space-x-4 w-full justify-end p-2'>
+                <View className='flex-row gap-4'>
+                    <View className='flex-1 justify-center'> 
+                      <input placeholder='SHOP NAME' className=' border-2 rounded-md p-2 border-violet-950 m-2' type="text"/>
+                      <input placeholder='PHONE NUMBER' className=' border-2 rounded-md p-2 border-violet-950 m-2' type="text"/>
+                      <input placeholder='EMAIL' className=' border-2 rounded-md p-2 border-violet-950 m-2' type="text"/>
+                      <input placeholder='TYPE OF BUSINESS' className=' border-2 rounded-md p-2 border-violet-950 m-2' type="text"/>
+                    </View>
+                    <View className='flex-2 bg-slate-400 rounded-sm p-2'>
+                      <View className='h-52 justify-center  w-full bg-slate-100'>
+                          {/* Display the selected image if it exists */}
+                          {imageUri ? (
+                            <Image source={{ uri: imageUri }} style={{ width: '100%', height: '100%' }} resizeMode="cover" className='border-2-fuchsia-950 ' />
+                            
+                          ) : (
+                            <Ionicons name="image" size={100} className="text-center text-purple-950" />              
+                          ) }
+                        
+                      </View>
+                      
+                      <input  onChange={handleImageChange}  className=' hover:bg-custom1 cursor-pointer overflow-y-hidden  bg-slate-300 ' type="file" name="" id="" /> 
+                      <Text   onPress={clearImageSelection} className='font-bold text-lg bg-slate-400 w-7 text-center h-7 rounded-full right-0 top-0 z-20 absolute hover:text-red-600 cursor-pointer hover:duration-200'>X</Text>
+                    </View>
+                </View>
+
+                <View className='flex-row space-x-2 w-full justify-end p-2 ml-2'>
                 <Button
                     className='bg-[#4E31AA]  rounded-lg '
                     onPress={toggleModal} 
@@ -56,8 +93,8 @@ const Shop = () => {
                 > </Button>
                 </View>
            
-                </View>
-            </View>
+              </View>
+          </View>
         </Modal>
         {/* Modal */}
 
