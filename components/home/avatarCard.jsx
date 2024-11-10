@@ -5,7 +5,7 @@ import { Link } from 'expo-router';
 import OrderCard from '../order/orderCard';
 
 const AvatarCard = ({ user }) => (
-    <View className='flex bg-secondary-color w-80 h-full rounded-md group'
+    <View className='flex bg-secondary-color w-80 h-full rounded-md group drop-shadow-lg'
     style={{ width: '35%', height: '98%' }}>
       <View className='flex flex-row gap-2 p-4 w-full justify-start '
        style={{ width: '100%', height: '100%' }}>
@@ -14,12 +14,12 @@ const AvatarCard = ({ user }) => (
       >
       
         <Link href='/' className='scale-100 duration-300 transition-all hover:scale-110'
-        style={{ width: '100%', height: '110%' }}
+        style={{ width: '100%', height: '100%' }}
         >
         <Image
             source={typeof user.avatarIcon === 'string' ? { uri: user.avatarIcon } : user.avatarIcon}
-            style={{ width: '100%', height: '110%' }}
-            className='z-20 duration-300 transition-all left-0 bottom-0 bg-primary-color rounded-r-lg  rounded-bl-lg hover:scale-125'
+            style={{ width: '100%', height: '108%' }}
+            className='z-20 duration-300 transition-all left-0 bottom-0 bg-gray-200 drop-shadow-lg rounded-b-lg   hover:scale-125'
             resizeMode="contain"
           />
            </Link>
