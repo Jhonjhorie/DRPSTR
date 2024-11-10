@@ -1,179 +1,48 @@
 import React from 'react';
 import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { Icon, Card, Button } from 'react-native-elements';
-import Header from '../components/Header';  
+import { Icon, Card, Button } from 'react-native-elements'; 
 import SideBarNav from '../components/BarNav';
+import Carousel from '@/components/Carousel';
+import AvatarCard from '@/components/home/avatarCard';
+
 
 const HomeScreen = () => {
-  const ribbonItems = [
-    { label: 'Home', path: '/', icon:'home' },
-    { label: 'Order', path: '/(pages)/shop', icon:'storefront' }, 
-    { label: 'Notification', path: '/(pages)/notification', icon:'notifications' }, 
-    { label: 'Account', path: '/(pages)/account', icon:'person' }, 
+  const activePage = "Home";
+  
+  const Images = [
+
+    { product: "Viscount Blank", rate: 4.1, shop:'Viscount', url: require('@/assets/images/home/blackTshirt.png') },      
+    { product: "Leather Mercedez", rate: 4.8, shop:'Aest', url:  require('@/assets/images/home/brownShoes.png') },
+    { product: "Runner Jump", rate: 3, shop:'Nike', url:  require('@/assets/images/home/orangeShoes.png') },  
+    { product: "Retro Vans", rate: 4.4, shop:'Vans', url:  require('@/assets/images/home/greyShoe.png') },  
+
   ];
+  const orderSample = Images;
+
+  const currUser = {
+    userId: '143143143',
+    name: 'Jolena Magdangal',
+    avatarIcon: require('@/assets/images/samples/jolinapic.png'),
+    title: 'New Star',
+    orders: orderSample  
+  };
 
   return (
-    <View className='flex-1 bg-slate-200 drop-shadow-md'> 
-      <Header />
+    <View className=' h-full w-full absolute top-0 '> 
+    <SideBarNav />
+      <ScrollView style={{width: '100%', height:'100%'}}  contentContainerStyle={{justifyContent: 'center',
+    alignItems: 'center'}} className='absolute z-10 px-16 pt-4 pb-4 flex flex-col '>
+        {/* Top Sec */}
+        <View style={{width: '100%', height:'100%', gap: 30}} className='flex flex-row '>
+        <Carousel images={Images}/>  
+        <AvatarCard user={currUser}  />
+        </View>
+        {/* Mid Sec */}
+        {/* Scroll Sec */}
       
-      <ScrollView contentContainerStyle={styles.scrollContainer}>  {/* ScrollView without flex */}
-        
-        {/* Ribbon Navigation */}
-        <SideBarNav items={ribbonItems} />
-
-        {/* Banner */}
-        <View style={styles.bannerContainer}>
-          <Image
-            source={{ uri: 'https://example.com/banner-image.jpg' }}
-            style={styles.bannerImage}
-            resizeMode="cover"
-          />
-        </View>
-
-        {/* Featured Products */}
-        {/* <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Featured Products</Text>
-          <View style={styles.productsContainer}>
-            {[1, 2, 3].map((item) => (
-              <Card key={item} containerStyle={styles.productCard}>
-                <Image
-                  source={{ uri: 'https://example.com/product-image.jpg' }}
-                  style={styles.productImage}
-                  resizeMode="contain"
-                />
-                <Text style={styles.productName}>Product {item}</Text>
-                <Text style={styles.productPrice}>$99.99</Text>
-                <Button
-                  title="Add to Cart"
-                  buttonStyle={styles.button}
-                  icon={<Icon name="cart-plus" type="font-awesome" color="#FFF" size={18} />}
-                />
-              </Card>
-            ))}
-          </View>
-        </View> */}
-
-        {/* Deals */}
-        {/* <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Exclusive Deals</Text>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.dealsContainer}>
-            {[1, 2, 3].map((deal) => (
-              <Card key={deal} containerStyle={styles.dealCard}>
-                <Image
-                  source={{ uri: 'https://example.com/deal-image.jpg' }}
-                  style={styles.dealImage}
-                  resizeMode="contain"
-                />
-                <Text style={styles.dealText}>Deal {deal} - Save 30%</Text>
-              </Card>
-            ))}
-          </ScrollView>
-        </View>
-
-        {/* Categories */}
-        {/* <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Shop by Category</Text>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.categoriesContainer}>
-            {["Men's Wear", "Women's Wear", "Electronics", "Accessories"].map((category, index) => (
-              <TouchableOpacity key={index} style={styles.categoryCard}>
-                <Icon name="tags" type="font-awesome" color="#4CAF50" size={24} />
-                <Text style={styles.categoryText}>{category}</Text>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        </View> */} 
       </ScrollView>
     </View>
   );
 };
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({
-  scrollContainer: {
-
-    paddingBottom: 16,  // Extra space at the bottom for scrollable content
-  },
-  bannerContainer: {
-    height: 180,
-    marginVertical: 10,
-  },
-  bannerImage: {
-    width: '100%',
-    height: '100%',
-    borderRadius: 8,
-  },
-  section: {
-    marginVertical: 16,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    paddingLeft: 16,
-    color: '#333',
-  },
-  categoriesContainer: {
-    flexDirection: 'row',
-    padding: 8,
-  },
-  categoryCard: {
-    width: 100,
-    alignItems: 'center',
-    padding: 10,
-    backgroundColor: '#E0F7FA',
-    borderRadius: 8,
-    marginHorizontal: 8,
-  },
-  categoryText: {
-    marginTop: 8,
-    fontSize: 14,
-    color: '#333',
-  },
-  productsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap',
-    padding: 8,
-  },
-  productCard: {
-    width: '45%',
-    padding: 10,
-    borderRadius: 8,
-  },
-  productImage: {
-    width: '100%',
-    height: 120,
-  },
-  productName: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginVertical: 4,
-  },
-  productPrice: {
-    fontSize: 14,
-    color: '#888',
-    marginBottom: 10,
-  },
-  button: {
-    backgroundColor: '#4CAF50',
-  },
-  dealsContainer: {
-    paddingHorizontal: 8,
-  },
-  dealCard: {
-    width: 150,
-    padding: 10,
-    marginHorizontal: 8,
-    borderRadius: 8,
-  },
-  dealImage: {
-    width: '100%',
-    height: 100,
-  },
-  dealText: {
-    marginTop: 8,
-    fontSize: 14,
-    color: '#333',
-    fontWeight: 'bold',
-  },
-});
