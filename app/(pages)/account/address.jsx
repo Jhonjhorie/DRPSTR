@@ -8,7 +8,12 @@ const AddressBook = () => {
       {/* Page Title */}
       <Text className="text-xl font-bold text-gray-800 mb-6">Address Book</Text>
       {/* Action Buttons */}
-      <View className="flex-row justify-end pt-2 mb-2 align-middle">
+
+
+        </View>
+      {/* Address Item */}
+      <View className="mb-4 p-4 bg-slate-100  "> 
+      <View className="flex-row justify-end pt-1 mb-3 align-middle">
           <TouchableOpacity className="mr-2">
             <Text className="text-indigo-600 text-sm">Make default shipping address    |</Text>
           </TouchableOpacity>
@@ -16,11 +21,7 @@ const AddressBook = () => {
             <Text className="text-indigo-600 text-sm">   Make default billing address</Text>
           </TouchableOpacity>
         </View>
-
-        </View>
-      {/* Address Item */}
-      <View className="mb-4 p-4 bg-slate-100  "> 
-        <View className="flex-1 bg-slate-100 p-4   mb-6">
+        <View className="flex-1 bg-slate-100    mb-6">
           {/* Table Header */}
           <View className="flex-row bg-gray-200 py-2 px-3 rounded-t-lg">
             <Text className="flex-1 text-gray-700 font-bold mr-1">Full Name</Text>
