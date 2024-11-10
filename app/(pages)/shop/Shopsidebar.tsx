@@ -7,52 +7,56 @@ import { Ionicons } from '@expo/vector-icons';
 
 const ShopSidebar = () => {
     return (
-        <View className="bg-[#2E073F] h-full items-center w-[20%]">
+        <View className="h-full items-center w-[20%] shadow-sm bg-slate-200">
             {/* Add content for the sidebar here */}
 
             {/* Avatar of Store */}
-            <View className="bg-black ring-2 object-fit center ring-violet/50 h-[35%] w-full  ">
+            <View className="bg-black object-fit center ring-violet/50 h-[24%] w-full  ">
             <Image
                 className="object-fit"
                 style={{ width: '100%', height: '100%' }}
                 resizeMode="cover"
-                source={require('../../../assets/images/avatarstore.jpg')}
+                source={require('../../../assets/images/shoplogo.jpg')}
             />
 
             </View>
 
             {/* Shop Name */}
 
-            <Text className="text-lg text-white p-2 font-bold"> SNEECKERZ </Text>
+            <Text className="text-lg text-slate-950 p-2 font-bold"> SNEECKERZ </Text>
 
             {/* Navbar */}
-            <View className=" h-[50%] w-full p-5">
-                <Text className="font-semibold text-md text-white duration-200 hover:bg-slate-100 hover:bg-opacity-20 cursor-pointer p-2 rounded-md flex items-center ">
-                    <Ionicons name="home" size={20} className="mr-5" /> 
-                    HOME
+            <View className=" h-[55%] w-full p-5">
+                <Text className="font-semibold text-md text-slate-800 duration-200 hover:bg-slate-600 hover:bg-opacity-20 cursor-pointer p-2 rounded-md flex items-center ">
+                    <Ionicons name="stats-chart-outline" size={20} className="mr-5" /> 
+                    DASHBOARD
                 </Text>
 
-                <Text className="font-semibold text-md text-white duration-200 hover:bg-slate-100 hover:bg-opacity-20 cursor-pointer p-2 rounded-md flex items-center ">
-                    <Ionicons name="notifications" size={20} className="mr-5" /> 
+                <Text className="font-semibold text-md text-slate-800 duration-200 hover:bg-slate-600 hover:bg-opacity-20 cursor-pointer p-2 rounded-md flex items-center ">
+                    <Ionicons name="notifications-outline" size={20} className="mr-5" /> 
                     ORDERS
                 </Text>
 
-                <Text className="font-semibold text-md text-white duration-200 hover:bg-slate-100 hover:bg-opacity-20 cursor-pointer p-2 rounded-md flex items-center ">
-                    <Ionicons name="pricetag" size={20} className="mr-5" /> 
+                <Text className="font-semibold text-md text-slate-800 duration-200 hover:bg-slate-600 hover:bg-opacity-20 cursor-pointer p-2 rounded-md flex items-center ">
+                    <Ionicons name="pricetag-outline" size={20} className="mr-5" /> 
                     PRODUCTS
                 </Text>
 
-                <Text className="font-semibold text-md text-white duration-200 hover:bg-slate-100 hover:bg-opacity-20 cursor-pointer p-2 rounded-md flex items-center ">
-                    <Ionicons name="people" size={20} className="mr-5" /> 
+                <Text className="font-semibold text-md text-slate-800 duration-200 hover:bg-slate-600 hover:bg-opacity-20 cursor-pointer p-2 rounded-md flex items-center ">
+                    <Ionicons name="people-outline" size={20} className="mr-5" /> 
                     FOLLOWERS
                 </Text>
 
-                <Text className="font-semibold text-md text-white duration-200 hover:bg-slate-100 hover:bg-opacity-20 cursor-pointer p-2 rounded-md flex items-center ">
-                    <Ionicons name="settings" size={20} className="mr-5" /> 
+                <Text className="font-semibold text-md text-slate-800 duration-200 hover:bg-slate-600 hover:bg-opacity-20 cursor-pointer p-2 rounded-md flex items-center ">
+                    <Ionicons name="settings-outline" size={20} className="mr-5" /> 
                     SETTINGS
                 </Text>
 
-
+                <View className='w-[86%] bg-slate-700 h-[0.5%] bottom-11 rounded-full align-bottom absolute'></View>    
+                <Text className="font-semibold bottom-0 w-[86%] absolute text-md text-slate-800 duration-200 hover:bg-slate-600 hover:bg-opacity-20 cursor-pointer p-2 rounded-md flex items-center ">
+                    <Ionicons name="home-outline" size={20} className="mr-5" /> 
+                    BACK TO MAIN
+                </Text>
             </View>
 
         </View>

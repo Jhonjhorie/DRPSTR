@@ -3,11 +3,22 @@ import React, { useState, useEffect} from 'react'
 import SideBarNav from '@/components/BarNav'
 import { Button } from 'react-native-elements/dist/buttons/Button'
 import { Ionicons } from '@expo/vector-icons';
+import { Link } from 'expo-router';
+import { useNavigation } from '@react-navigation/native';
 
 const Shop = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isModalVisible2, setIsModalVisible2] = useState(false);
     const [imageUri, setImageUri] = useState(null);
+    const fileInputRef = React.useRef(null);
+
+    //Routing
+    const navigation = useNavigation();
+
+    const handlePress = () => {
+      setIsModalVisible(false);
+      navigation.navigate('shoppage');
+    };
 
     // MODAL
     const toggleModal = () => {
@@ -30,6 +41,9 @@ const Shop = () => {
     //cancel upload photo
     const clearImageSelection = () => {
       setImageUri(null);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
     };
   return (
 
@@ -59,9 +73,15 @@ const Shop = () => {
                 <View className='flex-row gap-4'>
                     <View className='flex-1 justify-center'> 
                       <input placeholder='SHOP NAME' className=' border-2 rounded-md p-2 border-violet-950 m-2' type="text"/>
-                      <input placeholder='PHONE NUMBER' className=' border-2 rounded-md p-2 border-violet-950 m-2' type="text"/>
-                      <input placeholder='EMAIL' className=' border-2 rounded-md p-2 border-violet-950 m-2' type="text"/>
-                      <input placeholder='TYPE OF BUSINESS' className=' border-2 rounded-md p-2 border-violet-950 m-2' type="text"/>
+                      <input placeholder='PHONE NUMBER' className=' border-2 rounded-md p-2 border-violet-950 m-2' type="number"/>
+                      <input placeholder='EMAIL' className=' border-2 rounded-md p-2 border-violet-950 m-2' type="email"/>
+                      <select className='border-2 font-semibold rounded-md p-2 bg-slate-300 border-violet-950 m-2'>
+                        <option className='' value="">TYPE OF BUSINESS</option>
+                        <option  value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                      </select>
+
                     </View>
                     <View className='flex-2 bg-slate-400 rounded-sm p-2'>
                       <View className='h-52 justify-center  w-full bg-slate-100'>
@@ -75,16 +95,17 @@ const Shop = () => {
                         
                       </View>
                       
-                      <input  onChange={handleImageChange}  className=' hover:bg-custom1 cursor-pointer overflow-y-hidden  bg-slate-300 ' type="file" name="" id="" /> 
-                      <Text   onPress={clearImageSelection} className='font-bold text-lg bg-slate-400 w-7 text-center h-7 rounded-full right-0 top-0 z-20 absolute hover:text-red-600 cursor-pointer hover:duration-200'>X</Text>
+                      <input ref={fileInputRef} onChange={handleImageChange}  className=' hover:bg-custom1 cursor-pointer overflow-y-hidden  bg-slate-300 ' type="file" name="" id="" /> 
+                      <Text onPress={clearImageSelection} className='font-bold text-lg bg-slate-400 w-7 text-center h-7 rounded-full right-0 top-0 z-20 absolute hover:text-red-600 cursor-pointer hover:duration-200'>X</Text>
                     </View>
                 </View>
 
                 <View className='flex-row space-x-2 w-full justify-end p-2 ml-2'>
                 <Button
                     className='bg-[#4E31AA]  rounded-lg '
-                    onPress={toggleModal} 
+                     
                     title='SUBMIT'
+                    onPress={handlePress}
                 > </Button>
                 <Button
                     className='bg-[#4E31AA] rounded-lg'
@@ -139,16 +160,15 @@ const Shop = () => {
            
           </View>
         </View>
-      </Modal>
+        </Modal>
         {/* Modal2 */}
 
+        {/*this is the navbar component*/}
         <View className='absolute z-10 pl-2'>
             <SideBarNav className=''></SideBarNav>
         </View>
 
         <View className='md:flex md:flex-row md:flex-1'>
-        
-
             {/* First Container */}
             <View className='flex-1 h-full justify-center md:-mt-20'>
                 <Text className='text-5xl font-bold  text-center '>"Empowering Dreams, <br /> One Step at a Time."</Text>
