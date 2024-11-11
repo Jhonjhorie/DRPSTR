@@ -9,12 +9,14 @@ const innerSideBar = [
   { label: "My Profile", path: "/(pages)/account/profile", icon: "person-outline" },
   { label: "My Address Book", path: "/(pages)/account/address", icon: "location-outline" },
   { label: "My Payment Options", path: "/(pages)/account/payment", icon: "card-outline" },
+
   { label: "My Order", path: "/(pages)/account/orders", icon: "receipt-outline" },
   { label: "My Cancellations", path: "/(pages)/account/cancellations", icon: "close-circle-outline" },
   { label: "My Reviews", path: "/(pages)/account/reviews", icon: "star-outline" },
   { label: "My Wishlist and Followed Shop", path: "/(pages)/account/wishlist", icon: "heart-outline" },
   { label: "Set up Shop", path: "/(pages)/account/wow", icon: "storefront-outline" },
   { label: "Avatar", path: "/(pages)/account/avatar", icon: "person-circle-outline" },
+
 ];
 
 
@@ -37,7 +39,6 @@ const UserLayout = () => {
         <View style={styles.contentContainer}>
           <Stack screenOptions={{ headerShown: false }}>
             <Stack.Screen name="dashboard" options={{ title: "User Account" }} />
-            <Stack.Screen name="(components)/" options={{ href: null }} />
           </Stack>
         </View>
       </View>
