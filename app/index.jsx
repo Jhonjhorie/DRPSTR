@@ -50,7 +50,7 @@ const HomeScreen = () => {
   
           {/* Mid Section */}
           <View style={{ width: '100%', gap: 30 }} className="flex flex-row mb-4">
-            <CategoriesRibbon />
+            <CategoriesRibbon active={'all'} />
           </View>
   
           {/* Add any additional sections here */}
