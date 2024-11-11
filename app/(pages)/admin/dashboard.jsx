@@ -66,9 +66,9 @@ const Dashboard = () => {
                 className="text-violet-400 text-lg bg-transparent font-bold mr-5"
                 name="Time Period"
                 id="timePeriod"
+                defaultValue=""
               >
-                \
-                <option value="" disabled selected hidden>
+                <option value="" disabled hidden>
                   Time Period
                 </option>
                 <option className="bg-transparent" value="daily">
