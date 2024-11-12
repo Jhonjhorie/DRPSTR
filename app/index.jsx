@@ -19,9 +19,11 @@ const HomeScreen = () => {
   return (
     <View className=' h-full w-full absolute top-0'> 
     <SideBarNav />
-      <ScrollView className='w-full absolute z-10 px-16 pt-4 pb-4 flex flex-col items-start justify-center'>
+      <ScrollView style={{width: '100%', height: '100%'}} contentContainerStyle={{justifyContent: 'center'}}
+      className='absolute z-10 px-16 pt-4 pb-4 
+      flex flex-col bg-red-800'>
         {/* Top Sec */}
-        <View className=' flex flex-row w-full h-[40%]'>
+        <View style={{width: '100%', height:'100%', gap: 30}} className=' flex flex-row w-full h-[40%]'>
         <Carousel images={Images}/> 
         <View className='flex w-24 h-24 bg-fuchsia-900'></View>  
          

@@ -17,7 +17,7 @@ const ShopLayout = () => {
     <View style={styles.container}>
       {/* Header */}
       {/* Sub-header Navigation */}
-      {/*<RibbonNavigation items={ribbonItems} />
+      <RibbonNavigation items={ribbonItems} />
  
       {/* Stack Navigation for screens */}
       <Stack screenOptions={{
