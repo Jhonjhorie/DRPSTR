@@ -6,7 +6,7 @@ import OrderCard from '../order/orderCard';
 
 const AvatarCard = ({ user }) => (
     <View className='flex bg-secondary-color w-80 h-full rounded-md group drop-shadow-lg'
-    style={{ width: '35%', height: '98%' }}>
+    style={{ width: '34%', height: '98%' }}>
       <View className='flex flex-row gap-2 p-4 w-full justify-start '
        style={{ width: '100%', height: '100%' }}>
       <View className='flex flex-col gap-4'

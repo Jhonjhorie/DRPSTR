@@ -71,7 +71,7 @@ const CategoriesRibbon = ( {active} ) => {
             <Text className='text-secondary-color text-xl'>{item.label}</Text>
           </Link>
         )}
-        scrollEnabled={false} // Disable manual scrolling
+        scrollEnabled={false} 
       />
       {/* Left Arrow */}
       {currentIndex > 0 && (

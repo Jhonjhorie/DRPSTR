@@ -5,6 +5,7 @@ import SideBarNav from '../components/BarNav';
 import Carousel from '@/components/Carousel';
 import AvatarCard from '@/components/home/avatarCard';
 import CategoriesRibbon from '@/components/products/categoriesRibbon';
+import ProductsView from '@/components/products/productsView';
 
 
 const HomeScreen = () => {
@@ -52,8 +53,8 @@ const HomeScreen = () => {
           <View style={{ width: '100%', gap: 30 }} className="flex flex-row mb-4">
             <CategoriesRibbon active={'all'} />
           </View>
-  
           {/* Add any additional sections here */}
+          <ProductsView categories={'all'}/>
         </ScrollView>
       </View>
     </View>
