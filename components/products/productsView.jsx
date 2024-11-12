@@ -50,7 +50,7 @@ const ProductsView = () => {
           ) : (
             <Link
               href='/'
-              className='flex flex-col mx-2 mb-2 p-2 rounded-md group  hover:scale-105 gap-1'
+              className='flex flex-col mx-2 mb-2 p-2 rounded-md group  hover:scale-105 gap-1 bg-slate-50 drop-shadow-sm'
               style={{ alignItems: 'center', flex: 1 }}
             >
               {item.str && <Image source={require('@/assets/images/BlackLogo.svg')}
@@ -58,7 +58,7 @@ const ProductsView = () => {
                style={{ width: 30, height: 30 }}
                resizeMode="contain"
               />}
-              <View className='absolute flex flex-row right-0 top-0'>
+              <View className='absolute flex flex-row right-0 top-2'>
                 {item.voucher && 
                 <Text className='text-[0.65rem] border-[0.5px] border-primary-color px-0.5 font-thin'>SHOP VOUCHER</Text>
                 }
