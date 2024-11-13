@@ -3,21 +3,14 @@ import { View, Text, Dimensions, TextInput, TouchableOpacity, Image } from 'reac
 import { Ionicons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
 import HeaderAnd from './Header.android';
+import useMediaQueryChecker from '@/hooks/mediaQueryChecker';
 
 
 
 const Header= () => {
-  const [screen, setScreen] = useState(true); 
+  const isMobile = useMediaQueryChecker();
 
-  const updateScreen = () => {
-    const screenWidth = Dimensions.get('window').width;
-    let mediaQ = true; // mobile
-    if (screenWidth > 724) {
-      mediaQ = false; // Desktop
-    }
-    setScreen(mediaQ);
-  };
-  if(screen){return <HeaderAnd />}
+  if(isMobile){return <HeaderAnd />}
   else{
   return (
     <View 

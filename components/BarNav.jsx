@@ -1,22 +1,13 @@
 // src/components/RibbonNavigation.jsx
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Dimensions} from 'react-native';
 import { Link } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import SideBarNavAnd from './BarNav.android';
-
+import useMediaQueryChecker from '@/hooks/mediaQueryChecker';
 
 const SideBarNav = ({ innerSidebar, activeName }) => {
-  const [screen, setScreen] = useState(true); 
-
-  const updateScreen = () => {
-    const screenWidth = Dimensions.get('window').width;
-    let mediaQ = true; // mobile
-    if (screenWidth > 724) {
-      mediaQ = false; // Desktop
-    }
-    setScreen(mediaQ);
-  };
+  const isMobile = useMediaQueryChecker();
 
   const mainSideBar = [
     { label: "Mall", path: '/(pages)/mall', icon: 'business' }, 
@@ -24,7 +15,7 @@ const SideBarNav = ({ innerSidebar, activeName }) => {
     { label: "Notification", path: '/(pages)/notification', icon: 'notifications' }, 
     { label: "Account", path: '/(pages)/account', icon: 'person' }, 
   ];
-  if(screen){
+  if(isMobile){
   //Mobile
     return <SideBarNavAnd mainSideBar={mainSideBar} innerSidebar={innerSidebar} activeName={activeName} />
   }else{
