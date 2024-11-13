@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image,  } from 'react-native';
 import { red } from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import productshop from '../../../app/(pages)/shoppp/productshop';
+import productshop from '../../app/(pages)/shoppp/productshop';
 
 
 const ShopSidebar = () => {
@@ -25,7 +25,7 @@ const ShopSidebar = () => {
                 className="object-fit"
                 style={{ width: '100%', height: '100%' }}
                 resizeMode="cover"
-                source={require('../../../assets/images/shoplogo.jpg')}
+                source={require('../../assets/images/shoplogo.jpg')}
             />
 
             </View>

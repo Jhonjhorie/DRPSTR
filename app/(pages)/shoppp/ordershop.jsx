@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native'
 import React, { Component } from 'react'
 
-import ShopSidebar from '@/components/features/shop/Shopsidebar'
+import ShopSidebar from '@/components/shop/Shopsidebar'
 
 export class ordershop extends Component {
   render() {

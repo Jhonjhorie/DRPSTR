@@ -1,16 +1,17 @@
-  import { View, TextInput, Text, StyleSheet, 
+import { View, TextInput, Text, StyleSheet, 
     Image, Platform, ImageBackground, Modal, 
     Alert, TouchableOpacity, PermissionsAndroid
   } from 'react-native';
   import React, { useState, useEffect} from 'react'
   import SideBarNav from '@/components/BarNav'
+  import { Button } from 'react-native-elements/dist/buttons/Button'
   import { Ionicons } from '@expo/vector-icons';
   import { Picker } from '@react-native-picker/picker';
   import * as MediaLibrary from 'expo-media-library';
   import * as ImagePicker from 'expo-image-picker';
   import { useNavigation } from '@react-navigation/native';
 
-  const Shop = () => {
+  const setupartist = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [imageUri, setImageUri] = useState(null);
     const [selectedBusinessType, setSelectedBusinessType] = useState("");
@@ -18,12 +19,12 @@
     const [permissionGranted, setPermissionGranted] = useState(false);
     const [image, setImage] = useState('null')
     const navigation = useNavigation();
-
     //upload photo
     const handleImagePickerPress = async () => {
       console.log('handleImagePickerPress triggered');
       await openImagePicker();
     };
+  
     // launches the image gallery
     const openImagePicker = async () => {
       try {
@@ -45,10 +46,12 @@
         console.error('Error launching image picker: ', error); 
       }
     };
+    
     //cancel upload photo
     const clearImageSelection = () => {
       setImageUri(null);
     };
+
     const toggleModal = () => {
       setIsModalVisible(!isModalVisible);
     };
@@ -67,6 +70,9 @@
     
       requestPermission();
     }, []);
+    
+    
+
     //don't allow alphabet type
     const handlePhoneNumberChange = (text) => {
       const numericText = text.replace(/[^0-9]/g, ''); 
@@ -86,7 +92,6 @@
       requestPermission();
     }, []);
     
-   
 
     return (
       
@@ -95,29 +100,29 @@
           <SideBarNav className=''></SideBarNav>
         </View>
         {/* CONTAINER 1 */}
-        <View className=' justify-center -mt-10 h-auto pt-20 md:pt-0 md:h-full md:w-1/2'>
-          <Text className='md:text-5xl text-3xl font-bold  text-center '>"Empowering Dreams, {"\n"} One Step at a Time."</Text>
-          <Text className='md:text-right text-center md:mr-32  font-semibold'>with <Text className='text-lg font-bold'>DRIPSTR</Text></Text>
+        <View className=' z-0 justify-center -mt-10 h-auto pt-20 md:pt-0 md:h-full md:w-1/2'>
+          <Text className='md:text-5xl text-3xl font-bold  text-center '>"From Passion to Palette, {"\n"} Art that Inspires, Pieces that Last."</Text>
+          <Text className='md:text-right text-center md:mr-32  font-semibold'>by <Text className='text-lg font-bold'>DRIPSTR</Text></Text>
         </View>
             
         {/* CONTAINER 2 */}
         <View className='md:w-1/2 h-full md:justify-center'>
-          <View style={styles.container} className='absolute z-0'>
+          <View style={styles.container} className='absolute z-0' >
             <Image
                 source={require('../../../assets/images/blackLogo.png')}  
                 style={styles.image}
                 resizeMode="cover" 
                 className='blur-sm'
-                
+        
               />
           </View>
           {/* SET UP FORM */}
           <View className='self-center top-10 md:-top-10 place-content-center align-middle
           h-auto md:w-auto w-[85%]  bg-slate-100 bg-opacity-80 rounded-lg backdrop:blur-sm  '>
             <View className='p-3 md:p-10 justify-center align-middle'>
-            <Text className='text-2xl md:text-4xl text-pretty text-center font-medium'>Merchant Account Setup</Text>
-              <Text className='md:mt-7 mt-3 text-right right-3'>
-                Become a dripstr <Text className='font-semibold'>MERCHANT</Text>
+            <Text className='text-2xl md:text-4xl text-pretty text-center font-medium'>Artist Shop Account Setup</Text>
+              <Text className='mt-7 text-right right-3'>
+                Become a dripstr <Text className='font-semibold'>ARTIST</Text>
               </Text>
               <TextInput placeholder='SHOP NAME' className=' border-2 bg-slate-50 bg-opacity-50 rounded-md p-2 border-violet-900 m-2'
               type="text"/>
@@ -161,16 +166,15 @@
                     </TouchableOpacity>     
                 </View>
                 <View className='mt-5 w-full px-2'>
-                  <TouchableOpacity className=' h-12 hover:bg-[#a489fb] rounded-md justify-center bg-[#4E31AA] '
-                    >
+                  <TouchableOpacity className=' h-12 hover:bg-[#a489fb] rounded-md justify-center bg-[#4E31AA] '>
                     <Text className='text-xl text-center font-bold'>SUBMIT</Text>
                   </TouchableOpacity>
                 </View>
                 <View className='mt-2 w-full px-2'>
                   <TouchableOpacity className=' h-12 rounded-md justify-center '
-                   onPress={() => navigation.navigate('setupartist')}
+                   onPress={() => navigation.navigate('index')}
                     >
-                    <Text className=' text-center text-slate-700 hover:text-slate-950 '>BECOME A DRIPSTR ARTIST</Text>
+                    <Text className=' text-center text-slate-700 hover:text-slate-950 '>BECOME A DRIPSTR MERCHANT</Text>
                   </TouchableOpacity>
                 </View>
             </View>
@@ -242,6 +246,9 @@
     )
   }
 
+
+
+
   //background image logo blur di nagana yung tailwind huhu
   const styles = StyleSheet.create({
 
@@ -306,4 +313,4 @@
       transition: 'all 0.3s ease',
     }
   });
-  export default Shop
+  export default setupartist

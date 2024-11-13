@@ -2,7 +2,7 @@ import { Text, View, Image, Dimensions, Button } from 'react-native'
 import React, { Component } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { BarChart } from 'react-native-chart-kit';
-import ShopSidebar from '@/components/features/shop/Shopsidebar';
+import ShopSidebar from '@/components/shop/Shopsidebar';
 export class shoppage extends Component {
   render() {
 

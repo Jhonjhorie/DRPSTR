@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import ShopSidebar from '@/components/features/shop/Shopsidebar'
+import ShopSidebar from '@/components/shop/Shopsidebar'
 
 const followershop = () => {
   return (
