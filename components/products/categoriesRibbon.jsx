@@ -20,7 +20,7 @@ const CategoriesRibbon = ( {active} ) => {
 
   const flatListRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const itemsPerScreen = 9; // Number of items to show per screen (adjust as needed)
+  const itemsPerScreen = 9; 
 
   // Calculate the total number of items
   const maxIndex = categories.length - itemsPerScreen;
@@ -45,7 +45,7 @@ const CategoriesRibbon = ( {active} ) => {
 
   return (
     <View style={{width: '100%'}}  className='bg-slate-50 rounded-lg p-1 flex-row flex items-center align-middle'>
-        <Text className='text-3xl font-bold'> CATEGORIES </Text>
+        <Text className='text-3xl font-semibold'> CATEGORIES </Text>
         <Text className='text-3xl font-thin'> //</Text>
       <View style={{ flexDirection: 'row', alignItems: 'center', width:'82%' }} className='overflow-hidden'>
      

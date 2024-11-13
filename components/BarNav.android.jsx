@@ -1,34 +1,12 @@
 // src/components/RibbonNavigation.jsx
-import React, {useState} from 'react';
-import { View, Text, StyleSheet, Dimensions} from 'react-native';
+import React from 'react';
+import { View, Text} from 'react-native';
 import { Link } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import SideBarNavAnd from './BarNav.android';
 
 
-const SideBarNav = ({ innerSidebar, activeName }) => {
-  const [screen, setScreen] = useState(true); 
+const SideBarNavAnd = ({ mainSideBar,innerSidebar, activeName }) => {
 
-  const updateScreen = () => {
-    const screenWidth = Dimensions.get('window').width;
-    let mediaQ = true; // mobile
-    if (screenWidth > 724) {
-      mediaQ = false; // Desktop
-    }
-    setScreen(mediaQ);
-  };
-
-  const mainSideBar = [
-    { label: "Mall", path: '/(pages)/mall', icon: 'business' }, 
-    { label: "Shop", path: '/(pages)/shop', icon: 'storefront' }, 
-    { label: "Notification", path: '/(pages)/notification', icon: 'notifications' }, 
-    { label: "Account", path: '/(pages)/account', icon: 'person' }, 
-  ];
-  if(screen){
-  //Mobile
-    return <SideBarNavAnd mainSideBar={mainSideBar} innerSidebar={innerSidebar} activeName={activeName} />
-  }else{
-  //Desktop
   if(innerSidebar){
   return (
     <View className='z-30 flex flex-row justify-start  w-16 rounded-md  sticky left-2 mt-[25vh]'>
@@ -65,7 +43,7 @@ const SideBarNav = ({ innerSidebar, activeName }) => {
   );
   }else{
   return  (
-  <View className="flex flex-column  justify-center bg-slate-50 p-2 rounded-md w-9 sticky z-10 drop-shadow-sm mt-[25vh] left-2 hover:w-48 duration-300 transition-all overflow-hidden z-30">
+  <View style={{width: '99%', bottom:  80, position: 'absolute',}} className="flex flex-row justify-evenly bg-slate-50 p-2 rounded-t-3xl  drop-shadow-sm left-0 hover:w-48 duration-300 transition-all overflow-hidden z-30">
   {mainSideBar.map((item, index) => (
     <Link
       key={index}
@@ -77,19 +55,16 @@ const SideBarNav = ({ innerSidebar, activeName }) => {
     } absolute left-[-9px] top-0 w-1 h-full z-40 `}/>
       <Ionicons  name={item.icon} 
         className={`${
-          activeName === item.label ? 'color-primary-color' : 'color-slate-500'
-        } group-hover:color-primary-color`} // Conditionally change color
-        size={20}/>
-      <Text className={`${
-          activeName === item.label ? 'text-primary-color font-bold' : 'text-slate-500'
-        } text-sm font-semibold group-hover:text-primary-color group-hover:font-bold`}>{item.label}</Text>
+          activeName === item.label ? 'color-primary-color' : 'color-secondary-color'
+        } group-hover:color-primary-color`} 
+        size={25}/>
     </Link>
   ))}
   </View>
   )
-}}
+}
 };
 
 
 
-export default SideBarNav;
+export default SideBarNavAnd;

@@ -32,7 +32,7 @@ const HomeScreen = () => {
   return (
     <View className="h-full w-full">
       <SideBarNav />
-      <View style={{ flex: 1 }} className="absolute top-0 left-0 w-full h-full">
+      <View style={{ flex: 1 }} className="absolute top-0 left-0 w-full h-full bg-slate-300">
         <ScrollView
           contentContainerStyle={{
             paddingLeft: 60,

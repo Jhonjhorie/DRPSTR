@@ -41,6 +41,7 @@ const ProductsView = () => {
       </Text>
       <FlatList
         data={dataWithPlaceholders}
+        scrollEnabled={false}
         key={key} // Update key to trigger re-render on numColumns change
         keyExtractor={(item, index) => item.prodId || `placeholder-${index}`}
         numColumns={numColumns}

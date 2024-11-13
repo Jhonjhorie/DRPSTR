@@ -10,6 +10,7 @@ const sorted = orders.slice(0, 2);
     style={{ width: '63%' , height:'77%',}}
         >
       <FlatList
+        scrollEnabled={false}
         data={sorted}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
