@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View} from 'react-native'
 import React from 'react'
 import Sidebar from '@/components/shop/shopbar'
 
@@ -6,7 +6,9 @@ const shopdashboard = () => {
   return (
     <View className='bg-slate-300 h-full w-full '>
       <Text>shopdashboard</Text>
-      <Sidebar></Sidebar>
+      <View>
+        <Sidebar/>
+      </View>
     </View>
   )
 }

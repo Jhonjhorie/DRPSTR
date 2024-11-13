@@ -3,7 +3,7 @@ import React from 'react'
 
 const shopbar = (innerSidebar, activeName) => {
   return (
-    <View>
+    <View className='bg-slate-100'>
       <Text>shopbar</Text>
     </View>
   )
