@@ -4,7 +4,6 @@ import { View, TextInput, Text, StyleSheet,
   } from 'react-native';
   import React, { useState, useEffect} from 'react'
   import SideBarNav from '@/components/BarNav'
-  import { Button } from 'react-native-elements/dist/buttons/Button'
   import { Ionicons } from '@expo/vector-icons';
   import { Picker } from '@react-native-picker/picker';
   import * as MediaLibrary from 'expo-media-library';
@@ -39,6 +38,13 @@ import { View, TextInput, Text, StyleSheet,
           const selectedImageUri = result.assets[0].uri;
           setImage(selectedImageUri);
           setImageUri(selectedImageUri);
+
+          if (Platform.OS === 'web') {
+            alert('Image Selected: Your shop logo has been successfully selected.  (｡♥‿♥｡)');
+          } else {
+            Alert.alert('LOGO SELECTED', 'Your shop logo has been successfully selected. (👍≖‿‿≖)👍');
+          }
+
         } else {
           console.log('Image picker canceled');
         }
@@ -50,6 +56,11 @@ import { View, TextInput, Text, StyleSheet,
     //cancel upload photo
     const clearImageSelection = () => {
       setImageUri(null);
+      if (Platform.OS === 'web') {
+        alert('Image Cancelled: Your shop logo has been successfully selected. (ಥ﹏ಥ)');
+      } else {
+        Alert.alert('IMAGE REMOVED', 'Your shop logo has been removed. (ಥ﹏ಥ)  ');
+      }
     };
 
     const toggleModal = () => {

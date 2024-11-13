@@ -38,6 +38,13 @@
           const selectedImageUri = result.assets[0].uri;
           setImage(selectedImageUri);
           setImageUri(selectedImageUri);
+          
+          if (Platform.OS === 'web') {
+            alert('Image Selected: Your shop logo has been successfully selected.  (｡♥‿♥｡)');
+          } else {
+            Alert.alert('LOGO SELECTED', 'Your shop logo has been successfully selected. (👍≖‿‿≖)👍');
+          }
+
         } else {
           console.log('Image picker canceled');
         }
@@ -48,6 +55,11 @@
     //cancel upload photo
     const clearImageSelection = () => {
       setImageUri(null);
+      if (Platform.OS === 'web') {
+        alert('Image Cancelled: Your shop logo has been successfully selected. (ಥ﹏ಥ)');
+      } else {
+        Alert.alert('IMAGE REMOVED', 'Your shop logo has been removed. (ಥ﹏ಥ)  ');
+      }
     };
     const toggleModal = () => {
       setIsModalVisible(!isModalVisible);
@@ -162,7 +174,8 @@
                 </View>
                 <View className='mt-5 w-full px-2'>
                   <TouchableOpacity className=' h-12 hover:bg-[#a489fb] rounded-md justify-center bg-[#4E31AA] '
-                    >
+                   onPress={() => navigation.navigate('shopdashboard')}
+                   >
                     <Text className='text-xl text-center font-bold'>SUBMIT</Text>
                   </TouchableOpacity>
                 </View>
@@ -223,7 +236,6 @@
                     </TouchableOpacity>
                     <TouchableOpacity
                       className='bg-[#fa899e] hover:bg-[#ff133e] rounded-md '
-                      
                       style={styles.cancelbtn}
                       onPress={clearImageSelection}
                     > 

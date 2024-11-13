@@ -30,7 +30,6 @@ const HomeScreen = () => {
   };
 
   return (
-<<<<<<< HEAD
     <View className=' h-full w-full absolute top-0'> 
     <SideBarNav />
       <ScrollView style={{width: '100%', height: '100%'}} contentContainerStyle={{justifyContent: 'center'}}
@@ -45,35 +44,6 @@ const HomeScreen = () => {
         {/* Mid Sec */}
         {/* Scroll Sec */}
       </ScrollView>
-=======
-    <View className="h-full w-full">
-      <SideBarNav />
-      <View style={{ flex: 1 }} className="absolute top-0 left-0 w-full h-full">
-        <ScrollView
-          contentContainerStyle={{
-            paddingLeft: 60,
-            paddingRight: 16,
-            paddingTop: 8,
-            paddingBottom: 4,
-            alignItems: 'center',
-          }}
-          className="z-10 w-full flex flex-col"
-        >
-          {/* Top Section */}
-          <View style={{ width: '100%', gap: 30 }} className="flex flex-row mb-4">
-            <Carousel images={Images} />
-            <AvatarCard user={currUser} />
-          </View>
-  
-          {/* Mid Section */}
-          <View style={{ width: '100%', gap: 30 }} className="flex flex-row mb-4">
-            <CategoriesRibbon active={'all'} />
-          </View>
-          {/* Add any additional sections here */}
-          <ProductsView categories={'all'}/>
-        </ScrollView>
-      </View>
->>>>>>> upstream/HomePage_DemonLord
     </View>
   );
   
