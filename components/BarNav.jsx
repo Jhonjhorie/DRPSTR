@@ -8,13 +8,13 @@ const SideBarNav = ({ innerSidebar, activeName }) => {
 
   const mainSideBar = [
     { label: "Mall", path: '/(pages)/mall', icon: 'storefront' },
-    { label: "Notification", path: '/notifications', icon: 'notifications' },  // Use a placeholder path for Notification
+    { label: "Notification", path: '/notifications', icon: 'notifications' },  
     { label: "Account", path: '/(pages)/account', icon: 'person' },
   ];
 
-  const handleNotifPress = (item, event) => {
+  const notifPress = (item, event) => {
     if (item.label === "Notification") {
-      event.preventDefault(); // Prevent navigation for Notification
+      event.preventDefault(); 
       setModal(true);
     }
   };
@@ -36,8 +36,8 @@ const SideBarNav = ({ innerSidebar, activeName }) => {
           {innerSidebar.map((item, index) => (
             <Link
               key={index}
-              href={item.label !== "Notification" ? item.path : '/notifications'} // Use a placeholder href for Notification
-              onPress={(event) => handleNotifPress(item, event)} // Only trigger modal for Notification
+              href={item.label !== "Notification" ? item.path : '/notifications'} 
+              onPress={(event) => notifPress(item, event)} 
               className="flex gap-4 py-2 rounded-md group"
             >
               <View
@@ -71,7 +71,7 @@ const SideBarNav = ({ innerSidebar, activeName }) => {
           <Link
             key={index}
             href={item.label !== "Notification" ? item.path : '/notifications'} // Use a placeholder href for Notification
-            onPress={(event) => handleNotifPress(item, event)} // Call handleNotifPress only for Notification
+            onPress={(event) => notifPress(item, event)} // Call handleNotifPress only for Notification
             className="flex gap-4 py-2 rounded-md group"
           >
             <View
@@ -113,17 +113,20 @@ const SideBarNav = ({ innerSidebar, activeName }) => {
               </View>
 
               <View className="space-y-4">
-                <View className="flex-row items-center bg-gray-100 p-4 rounded-lg shadow">
+                <TouchableOpacity>
+                <View className="flex-row items-center bg-gray-100 p-4 rounded-lg shadow hover:bg-slate-200">
                   <Image
                     source={{ uri:  './assets/images/home/blackTshirt.png' }}
                     className="w-20 h-20 bg-slate-300 rounded"
                   />
                   <View className="ml-4">
-                    <Text className="text-lg font-semibold">Viscount Blank 50% OFF 1</Text>
+                    <Text className="text-lg font-semibold">Viscount Blank 50% OFF </Text>
                     <Text className="text-gray-600">Limited Time Only!</Text>
                   </View>
                 </View>
-                <View className="flex-row items-center bg-gray-100 p-4 rounded-lg shadow">
+                </TouchableOpacity>
+                <TouchableOpacity>
+                <View className="flex-row items-center bg-gray-100 p-4 rounded-lg shadow hover:bg-slate-200">
                   <Image
                     source={{ uri: 'https://via.placeholder.com/80' }}
                     className="w-20 h-20 rounded"
@@ -133,6 +136,7 @@ const SideBarNav = ({ innerSidebar, activeName }) => {
                     <Text className="text-gray-600">50% Cashback!</Text>
                   </View>
                 </View>
+                </TouchableOpacity>
               </View>
             </View>
           </View>
