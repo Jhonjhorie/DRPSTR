@@ -1,12 +1,17 @@
-import React from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
+import React, {useState} from 'react';
+import { View, Text, Dimensions, TextInput, TouchableOpacity, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
+import HeaderAnd from './Header.android';
+import useMediaQueryChecker from '@/hooks/mediaQueryChecker';
 
 
 
 const Header= () => {
+  const isMobile = useMediaQueryChecker();
 
+  if(isMobile){return <HeaderAnd />}
+  else{
   return (
     <View 
     className="flex-row items-center max-h-20 px-16 py-12 bg-slate-50 sticky top-0 z-30">
@@ -56,7 +61,8 @@ const Header= () => {
         </View>
       </View>
     </View>
-  );
+    
+  )};
 };
 
 export default Header;
