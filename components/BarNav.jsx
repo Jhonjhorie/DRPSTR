@@ -1,25 +1,17 @@
 // src/components/RibbonNavigation.jsx
-import React, {useState, useEffect} from 'react';
-import { View, Text, StyleSheet, Dimensions} from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import { Link } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import SideBarNavAnd from './BarNav.android';
-import useMediaQueryChecker from '@/hooks/mediaQueryChecker';
+
 
 const SideBarNav = ({ innerSidebar, activeName }) => {
-  const isMobile = useMediaQueryChecker();
-
+   
   const mainSideBar = [
-    { label: "Mall", path: '/(pages)/mall', icon: 'business' }, 
-    { label: "Shop", path: '/(pages)/shop', icon: 'storefront' }, 
+    { label: "Mall", path: '/(pages)/mall', icon: 'storefront' }, 
     { label: "Notification", path: '/(pages)/notification', icon: 'notifications' }, 
     { label: "Account", path: '/(pages)/account', icon: 'person' }, 
   ];
-  if(isMobile){
-  //Mobile
-    return <SideBarNavAnd mainSideBar={mainSideBar} innerSidebar={innerSidebar} activeName={activeName} />
-  }else{
-  //Desktop
   if(innerSidebar){
   return (
     <View className='z-30 flex flex-row justify-start  w-16 rounded-md  sticky left-2 mt-[25vh]'>
@@ -78,7 +70,7 @@ const SideBarNav = ({ innerSidebar, activeName }) => {
   ))}
   </View>
   )
-}}
+}
 };
 
 

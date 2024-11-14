@@ -181,7 +181,7 @@
                 </View>
                 <View className='mt-2 w-full px-2'>
                   <TouchableOpacity className=' h-12 rounded-md justify-center '
-                   onPress={() => navigation.navigate('setupartist' )}
+                   onPress={() => navigation.navigate('setupartist')}
                     >
                     <Text className=' text-center text-slate-700 hover:text-slate-950 '>BECOME A DRIPSTR ARTIST</Text>
                   </TouchableOpacity>

@@ -8,14 +8,14 @@ import Sidebar from '@/components/shop/shopbar'
 const shopdashboard = () => {
 
   return (
-    <View className='bg-slate-300 h-full w-full flex-row overflow-hidden'>
+    <View className='bg-slate-300 h-screen w-full flex-row'>
      
-      <View className='h-full absolute  z-50'>
+      <View className='h-full absolute z-50'>
         <Sidebar/>
       </View>
-      <View className='w-full ml-0 md:ml-16 h-auto  overflow-y-scroll bg-slate-900'>
+      <View className='w-full ml-16 h-[200%] bg-slate-300'>
         <Text className='text-center'>This ss the main pages</Text>
-        <Text className=''>This is ssthe mainsss pagessssssssss</Text>
+        <Text className=''>This is the main page</Text>
       </View>
     </View>
   )
