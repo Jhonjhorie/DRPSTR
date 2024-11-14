@@ -3,17 +3,23 @@ import { Dimensions, FlatList, Image, Text, View, TouchableOpacity } from 'react
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Link } from 'expo-router';
 import useCarousel from './useCarousel'
+import useMediaQueryChecker from '@/hooks/mediaQueryChecker';
+
 
 const Carousel = ({ images }) => {
+  const isMobile = useMediaQueryChecker();
   const { carouselWidth, activeIndex, flatListRef, handleScroll, handleNext, handlePrev } = useCarousel(images);
-  const carouselHeight = 300;
+  const carouselHeight = isMobile ? 300 : 300;
 
   return (
-    <View style={{ width: carouselWidth, height: carouselHeight}} className='relative rounded-md bg-gray-200 drop-shadow-lg group'>
+    <View style={{ width: carouselWidth, height: carouselHeight}} className='relative rounded-md bg-slate-200 drop-shadow-lg group'>
       <FlatList
         ref={flatListRef}
+        className='z-50'
         data={images}
         horizontal
+        decelerationRate="normal"
+        scrollEnabled={true}
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         keyExtractor={(item, index) => index.toString()}
@@ -21,18 +27,30 @@ const Carousel = ({ images }) => {
         renderItem={({ item }) => (
           <View style={{ width: carouselWidth, height: carouselHeight }}>
             <Image source={typeof item.url === 'string' ? { uri: item.url } : item.url}   
-            style={{ width: '100%', height: '100%' }}
-            className='z-20 group-hover:scale-90 duration-300 transition-all left-0 absolute group-hover:left-24'
+            style={isMobile ? { width: '70%', height: '70%', left: 15, top: 50 } : 
+            { width: '100%', height: '100%', left:0, top:0 }}
+            className='z-20 group-hover:scale-90 duration-300 transition-all absolute group-hover:left-24'
             resizeMode="contain"/>
             {item.product && (
-             <Text className='absolute bottom-8  left-0 text-secondary-color text-8xl font-bold group-hover:text-5xl line-clamp-1 group-hover:text-primary-color  group-hover:z-50 duration-300 transition-all'>
+             <Text className={`absolute text-secondary-color ${isMobile ? 'text-5xl bottom-2 left-2' : 'text-8xl bottom-8 left-0'} text-8xl font-bold group-hover:text-5xl line-clamp-1 group-hover:text-primary-color  group-hover:z-50 duration-300 transition-all`}>
                 {item.product}
               </Text>
             )}
             {item.rate && (
-              <Text className='absolute top-4 right-4 text-primary-color text-8xl font-bold'>
-                {item.rate}
+              <View className='flex flex-row absolute top-4 right-4 items-start'>
+              <Text className={`${isMobile ? 'text-6xl' : 'text-8xl'} text-primary-color  font-bold`}>
+                {item.rate}   
               </Text>
+              {item.rate == 5 && (
+                <Ionicons size={isMobile ? 35:90} className="color-primary-color mr-1" color={'#9800FF'} name="star" />
+              )}
+              {item.rate < 5 && item.rate != 0 && (
+                <Ionicons size={isMobile ? 35:90} className="color-primary-color mr-1" color={'#9800FF'} name="star-half" />
+              )}
+              {item.rate == 0 && (
+                <Ionicons size={isMobile ? 35:90}className="color-primary-color mr-1" color={'#9800FF'} name="star-outline" />
+              )}
+              </View>
             )}
             {item.shop && (
               <Link href='/'
@@ -77,18 +95,19 @@ const Carousel = ({ images }) => {
       </View>
 
       {/* Left Arrow */}
-      {activeIndex > 0 && (
-        <TouchableOpacity onPress={handlePrev} style={{top: '40%', left: -20}} className='absolute top-1/2 hover:opacity-100 opacity-80 transition-all duration-300 left-1 p-1 rounded-lg bg-secondary-color'>
-          <Ionicons name="chevron-back" size={28} className='color-primary-color'/>
-        </TouchableOpacity>
-      )}
+      
+        {!isMobile && (activeIndex > 0 && (
+          <TouchableOpacity onPress={handlePrev} style={{top: '40%', left: -20}} className='absolute top-1/2 hover:opacity-100 opacity-80 transition-all duration-300 left-1 p-1 rounded-lg bg-secondary-color'>
+            <Ionicons name="chevron-back" size={28} className='color-primary-color'/>
+          </TouchableOpacity>
+        ))}
 
-      {/* Right Arrow */}
-      {activeIndex < images.length - 1 && (
-        <TouchableOpacity onPress={handleNext} style={{top: '40%', right: -20}} className='absolute top-1/2 hover:opacity-100 opacity-80 transition-all duration-300  p-1 rounded-lg bg-secondary-color'>
-          <Ionicons name="chevron-forward" size={28} className='color-primary-color' />
-        </TouchableOpacity>
-      )}
+        {/* Right Arrow */}
+        {!isMobile && (activeIndex < images.length - 1 && (
+          <TouchableOpacity onPress={handleNext} style={{top: '40%', right: -20}} className='absolute top-1/2 hover:opacity-100 opacity-80 transition-all duration-300  p-1 rounded-lg bg-secondary-color'>
+            <Ionicons name="chevron-forward" size={28} className='color-primary-color' />
+          </TouchableOpacity>
+        ))}
     </View>
   );
 };

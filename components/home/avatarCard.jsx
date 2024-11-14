@@ -3,10 +3,15 @@ import { FlatList, Image, Text, View, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Link } from 'expo-router';
 import OrderCard from '../order/orderCard';
+import useMediaQueryChecker from '@/hooks/mediaQueryChecker';
 
-const AvatarCard = ({ user }) => (
-    <View className='flex bg-secondary-color w-80 h-full rounded-md group drop-shadow-lg'
-    style={{ width: '34%', height: '98%' }}>
+
+const AvatarCard = ({ user }) => {
+  const isMobile = useMediaQueryChecker();
+
+  return (
+    <View className='flex bg-secondary-color rounded-md group drop-shadow-lg'
+    style={{ width: isMobile ? '100%' : '34%', height: isMobile ? 100 : '98%' }}>
       <View className='flex flex-row gap-2 p-4 w-full justify-start '
        style={{ width: '100%', height: '100%' }}>
       <View className='flex flex-col gap-4'
@@ -33,6 +38,6 @@ const AvatarCard = ({ user }) => (
         </View>
         </View>
     </View>
-  );
+  )};
 
 export default AvatarCard;

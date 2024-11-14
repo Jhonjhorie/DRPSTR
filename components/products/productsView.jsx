@@ -80,13 +80,13 @@ const ProductsView = () => {
                       {item.rate}{' '}
                     </Text>
                     {item.rate == 5 && (
-                      <Ionicons size={13} className="color-primary-color mr-1" name="star" />
+                      <Ionicons size={13} className="color-primary-color mr-1" color={'#9800FF'} name="star" />
                     )}
                     {item.rate < 5 && item.rate != 0 && (
-                      <Ionicons size={13} className="color-primary-color mr-1" name="star-half" />
+                      <Ionicons size={13} className="color-primary-color mr-1" color={'#9800FF'} name="star-half" />
                     )}
                     {item.rate == 0 && (
-                      <Ionicons size={13} className="color-primary-color mr-1" name="star-outline" />
+                      <Ionicons size={13} className="color-primary-color mr-1" color={'#9800FF'} name="star-outline" />
                     )}
                     <Text className="text-secondary-color text-md font-thin">
                       | {item.sold} sold
