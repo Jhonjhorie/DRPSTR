@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Dimensions, FlatList, Image, Text, View } from 'react-native';
 import { Link } from 'expo-router';
-import { products } from './sampledata';
+
 import { Ionicons } from '@expo/vector-icons';
 
 const ProductsView = () => {

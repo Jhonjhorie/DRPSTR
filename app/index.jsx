@@ -1,53 +1,53 @@
 import React from 'react';
-import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity, AvatarCard,
-   currUser} from 'react-native';
+import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Icon, Card, Button } from 'react-native-elements'; 
 import SideBarNav from '../components/BarNav';
-import Carousel from '@/components/Carousel';
-import ProductsView from '@/components/products/productsView';
-import CategoriesRibbon from '@/components/products/categoriesRibbon';
+import useMediaQueryChecker from '@/hooks/mediaQueryChecker';
 
 const HomeScreen = () => {
   const activePage = "Home";
- 
+  const isMobile = useMediaQueryChecker();
   const Images = [
+
+    { product: "Viscount Blank", rate: 4.1, shop:'Viscount', url: require('@/assets/images/home/blackTshirt.png') },      
     { product: "Leather Mercedez", rate: 4.8, shop:'Aest', url:  require('@/assets/images/home/brownShoes.png') },
-    { product: "Viscount Blank", rate: 4.1, shop:'Viscount', url: require('@/assets/images/home/blackTshirt.png') },  
     { product: "Runner Jump", rate: 3, shop:'Nike', url:  require('@/assets/images/home/orangeShoes.png') },  
     { product: "Retro Vans", rate: 4.4, shop:'Vans', url:  require('@/assets/images/home/greyShoe.png') },  
 
   ];
+  const orderSample = Images;
 
+ 
   return (
     <View className="h-full w-full">
       <SideBarNav />
       <View style={{ flex: 1 }} className="absolute top-0 left-0 w-full h-full bg-slate-300">
-        <ScrollView
-          contentContainerStyle={{
-            paddingLeft: 60,
-            paddingRight: 16,
-            paddingTop: 8,
-            paddingBottom: 4,
-            alignItems: 'center',
+      {isMobile && (
+        <View
+          style={{
+            position: 'absolute',
+            bottom: 90,
+            left: 0,
+            width: '100%',
+            backgroundColor: '#2d3748', // Slate-800
+            padding: 16,
+            zIndex: 50,
           }}
-          className="z-10 w-full flex flex-col"
         >
-          {/* Top Section */}
-          <View style={{ width: '100%', gap: 30 }} className="flex flex-row mb-4">
-            <Carousel images={Images} />
-            <AvatarCard user={currUser} />
-          </View>
-  
-          {/* Mid Section */}
-          <View style={{ width: '100%', gap: 30 }} className="flex flex-row mb-4">
-            <CategoriesRibbon active={'all'} />
-          </View>
-          {/* Add any additional sections here */}
-          <ProductsView categories={'all'}/>
-        </ScrollView>
+          <Text style={{ color: 'white', textAlign: 'center' }}>Mobile Navbar</Text>
+          {/* Add icons or buttons for mobile navigation */}
+        </View>
+      )}
+
       </View>
+      <View 
+          style={{ width: '100%', gap: isMobile ? 10 : 30,
+          flexDirection: isMobile ? 'column' :'row', }} 
+          className="flex mb-4 items-center">
+          </View>
     </View>
   );
+  
 };
 
 export default HomeScreen;
