@@ -2,46 +2,16 @@ import React, { useRef, useState } from 'react';
 import { FlatList, Image, Text, View, TouchableOpacity } from 'react-native';
 import { Link } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { categories } from '@/constants/categories';
+import useCategories from './useCategories'
 
 const CategoriesRibbon = ( {active} ) => {
-  const categories = [
-    {label:'All', icon: require('@/assets/images/categoriesIcon/grid.png'), value:'all'},
-    {label:'T-Shirt', icon: require('@/assets/images/categoriesIcon/tshirt.png'), value:'tshirt'},
-    {label:'Shirt', icon: require('@/assets/images/categoriesIcon/shirt.png'), value:'shirt'},
-    {label:'Trouser', icon: require('@/assets/images/categoriesIcon/trousers.png'), value:'trouser'},
-    {label:'Jacket', icon: require('@/assets/images/categoriesIcon/jacket.png'), value:'jacket'},
-    {label:'Lanyard', icon: require('@/assets/images/categoriesIcon/lanyard.png'), value:'lanyard'},
-    {label:'Shoes', icon: require('@/assets/images/categoriesIcon/running-shoe.png'), value:'shoe'},
-    {label:'Sweater', icon: require('@/assets/images/categoriesIcon/sweater.png'), value:'sweater'},
-    {label:'Dress', icon: require('@/assets/images/categoriesIcon/dress.png'), value:'dress'},
-    {label:'Boxer', icon: require('@/assets/images/categoriesIcon/boxer.png'), value:'boxer'},
-  ]
+  const itemsPerScreen = 9;
+  const { flatListRef, currentIndex, maxIndex, handleNext, handlePrev } = useCategories(
+    itemsPerScreen,
+    categories.length
+  );
   const activeCat = (value) => active === value;
-
-  const flatListRef = useRef(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const itemsPerScreen = 9; 
-
-  // Calculate the total number of items
-  const maxIndex = categories.length - itemsPerScreen;
-
-  // Scrolls to a given index
-  const scrollToIndex = (index) => {
-    flatListRef.current.scrollToOffset({ offset: index * 100, animated: true });
-    setCurrentIndex(index);
-  };
-
-  // Handles right navigation
-  const handleNext = () => {
-    const nextIndex = Math.min(currentIndex + 1, maxIndex);
-    scrollToIndex(nextIndex);
-  };
-
-  // Handles left navigation
-  const handlePrev = () => {
-    const prevIndex = Math.max(currentIndex - 1, 0);
-    scrollToIndex(prevIndex);
-  };
 
   return (
     <View style={{width: '100%'}}  className='bg-slate-50 rounded-lg p-1 flex-row flex items-center align-middle'>

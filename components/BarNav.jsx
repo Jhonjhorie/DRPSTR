@@ -5,16 +5,11 @@ import { Link } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import SideBarNavAnd from './BarNav.android';
 import useMediaQueryChecker from '@/hooks/mediaQueryChecker';
+import { mainSideBar } from '@/constants/mainNavBarItems';
 
 const SideBarNav = ({ innerSidebar, activeName }) => {
   const isMobile = useMediaQueryChecker();
 
-  const mainSideBar = [
-    { label: "Mall", path: '/(pages)/mall', icon: 'business' }, 
-    { label: "Shop", path: '/(pages)/shop', icon: 'storefront' }, 
-    { label: "Notification", path: '/(pages)/notification', icon: 'notifications' }, 
-    { label: "Account", path: '/(pages)/account', icon: 'person' }, 
-  ];
   if(isMobile){
   //Mobile
     return <SideBarNavAnd mainSideBar={mainSideBar} innerSidebar={innerSidebar} activeName={activeName} />

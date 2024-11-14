@@ -1,54 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 import { Dimensions, FlatList, Image, Text, View, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Link } from 'expo-router';
-
-const { width: screenWidth } = Dimensions.get('window');
-
-const getResponsiveCarouselWidth = (width) => {
-  if (width >= 1024) return width * 0.6; 
-  if (width >= 768) return width * 0.8;  
-  return width * 0.9;                    
-};
+import useCarousel from './useCarousel'
 
 const Carousel = ({ images }) => {
-  const [carouselWidth, setCarouselWidth] = useState(getResponsiveCarouselWidth(screenWidth));
-  const [activeIndex, setActiveIndex] = useState(0);
-  const flatListRef = useRef(null);
-  const carouselHeight = 300; // Set a fixed height for the carousel container
-  useEffect(() => {
-    const updateDimensions = () => {
-      const newWidth = Dimensions.get('window').width;
-      setCarouselWidth(getResponsiveCarouselWidth(newWidth));
-    };
-
-    Dimensions.addEventListener('change', updateDimensions);
-    return () => Dimensions.removeEventListener('change', updateDimensions);
-  }, []);
-  
-  const handleScroll = (event) => {
-    const contentOffsetX = event.nativeEvent.contentOffset.x;
-    const index = Math.floor(contentOffsetX / carouselWidth);
-    setActiveIndex(index);
-  };
-
-  const scrollToIndex = (index) => {
-    if (flatListRef.current) {
-      flatListRef.current.scrollToOffset({ offset: index * carouselWidth, animated: true });
-      setActiveIndex(index);
-    }
-  };
-
-  const handleNext = () => {
-    const nextIndex = Math.min(activeIndex + 1, images.length - 1);
-    scrollToIndex(nextIndex);
-  };
-
-  const handlePrev = () => {
-    const prevIndex = Math.max(activeIndex - 1, 0);
-    scrollToIndex(prevIndex);
-  };
-
+  const { carouselWidth, activeIndex, flatListRef, handleScroll, handleNext, handlePrev } = useCarousel(images);
+  const carouselHeight = 300;
 
   return (
     <View style={{ width: carouselWidth, height: carouselHeight}} className='relative rounded-md bg-gray-200 drop-shadow-lg group'>

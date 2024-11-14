@@ -1,3 +1,21 @@
+export const Images = [
+
+    { product: "Viscount Blank", rate: 4.1, shop:'Viscount', url: require('@/assets/images/home/blackTshirt.png') },      
+    { product: "Leather Mercedez", rate: 4.8, shop:'Aest', url:  require('@/assets/images/home/brownShoes.png') },
+    { product: "Runner Jump", rate: 3, shop:'Nike', url:  require('@/assets/images/home/orangeShoes.png') },  
+    { product: "Retro Vans", rate: 4.4, shop:'Vans', url:  require('@/assets/images/home/greyShoe.png') },  
+
+  ];
+export const orderSample = Images;
+
+export  const currUser = {
+    userId: '143143143',
+    name: 'Jolena Magdangal',
+    avatarIcon: require('@/assets/images/samples/jolinapic.png'),
+    title: 'New Star',
+    orders: orderSample  
+  };
+
 export const products = [ 
     { product: "Viscount Blank", rate: 4.1, shop:'Viscount', url: require('@/assets/images/home/blackTshirt.png'), str:true, discount:50, sold:0, voucher:false, price:100, prodId:1245},      
     { product: "Leather Mercedez", rate: 0, shop:'Aest', url:  require('@/assets/images/home/brownShoes.png'),str:false, discount:0, sold:100, voucher:false, price:400, prodId:2734},
@@ -19,4 +37,4 @@ export const products = [
     { product: "Magical Fabric", rate: 4.4, shop:'MagicDrip', url:  require('@/assets/images/samples/14.jpg'), str:false, discount:0, sold:50, voucher:false, price:250, prodId:1225},
     { product: "Black Plain T-shirt", rate: 4.4, shop:'Litex Bazaar', url:  require('@/assets/images/samples/15.png'), str:true, discount:0, sold:150, voucher:true, price:150, prodId:1545}, 
   
-  ]
+]

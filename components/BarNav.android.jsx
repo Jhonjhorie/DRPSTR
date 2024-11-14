@@ -3,9 +3,10 @@ import React from 'react';
 import { View, Text} from 'react-native';
 import { Link } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { mainSideBar } from '@/constants/mainNavBarItems';
 
 
-const SideBarNavAnd = ({ mainSideBar,innerSidebar, activeName }) => {
+const SideBarNavAnd = ({ innerSidebar, activeName }) => {
 
   if(innerSidebar){
   return (
@@ -19,7 +20,7 @@ const SideBarNavAnd = ({ mainSideBar,innerSidebar, activeName }) => {
           size={20}/>
       </Link>
       <View className="flex flex-column  justify-center bg-slate-50 p-2 rounded-md w-9 drop-shadow-sm left-[-4px] hover:w-48 duration-300 transition-all overflow-hidden">
-    {innerSidebar.map((item, index) => (
+    {innerSidebar && innerSidebar.map((item, index) => (
       <Link
         key={index}
         href={item.path}
@@ -44,7 +45,7 @@ const SideBarNavAnd = ({ mainSideBar,innerSidebar, activeName }) => {
   }else{
   return  (
   <View style={{width: '99%', bottom:  80, position: 'absolute',}} className="flex flex-row justify-evenly bg-slate-50 p-2 rounded-t-3xl  drop-shadow-sm left-0 hover:w-48 duration-300 transition-all overflow-hidden z-30">
-  {mainSideBar.map((item, index) => (
+  {mainSideBar && mainSideBar.map((item, index) => (
     <Link
       key={index}
       href={item.path}
