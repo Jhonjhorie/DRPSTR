@@ -2,8 +2,8 @@ export const Images = [
 
     { product: "Viscount Blank", rate: 4.1, shop:'Viscount', url: require('@/assets/images/home/blackTshirt.png') },      
     { product: "Leather Mercedez", rate: 4.8, shop:'Aest', url:  require('@/assets/images/home/brownShoes.png') },
-    { product: "Runner Jump", rate: 3, shop:'Nike', url:  require('@/assets/images/home/orangeShoes.png') },  
-    { product: "Retro Vans", rate: 4.4, shop:'Vans', url:  require('@/assets/images/home/greyShoe.png') },  
+    { product: "Runner Jump", rate: 3.0, shop:'Nike', url:  require('@/assets/images/home/orangeShoes.png') },  
+    { product: "Retro Vans", rate: 1.4, shop:'Vans', url:  require('@/assets/images/home/greyShoe.png') },  
 
   ];
 export const orderSample = Images;
@@ -19,7 +19,7 @@ export  const currUser = {
 export const products = [ 
     { product: "Viscount Blank", rate: 4.1, shop:'Viscount', url: require('@/assets/images/home/blackTshirt.png'), str:true, discount:50, sold:0, voucher:false, price:100, prodId:1245},      
     { product: "Leather Mercedez", rate: 0, shop:'Aest', url:  require('@/assets/images/home/brownShoes.png'),str:false, discount:0, sold:100, voucher:false, price:400, prodId:2734},
-    { product: "Runner Jump", rate: 3, shop:'Nike', url:  require('@/assets/images/home/orangeShoes.png'),str:false, discount:0, sold:100, voucher:false, price:100, prodId:1246 },  
+    { product: "Runner Jump", rate: 3.0, shop:'Nike', url:  require('@/assets/images/home/orangeShoes.png'),str:false, discount:0, sold:100, voucher:false, price:100, prodId:1246 },  
     { product: "Retro Vans", rate: 4.4, shop:'Vans', url:  require('@/assets/images/home/greyShoe.png'), str:true, discount:0, sold:100, voucher:false, price:300, prodId:1247 }, 
     { product: "Classic Tote Bag", rate: 4.9, shop:'The Classics', url:  require('@/assets/images/samples/1.png'), str:false, discount:20, sold:100, voucher:true, price:200, prodId:1248}, 
     { product: "Air White America", rate: 3.8, shop:'America', url:  require('@/assets/images/samples/2.png'), str:false, discount:0, sold:50, voucher:false, price:180, prodId:1299},

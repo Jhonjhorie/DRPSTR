@@ -7,7 +7,7 @@ const sorted = orders.slice(0, 2);
 
   return (
     <View className='overflow-hidden'
-    style={{ width: '63%' , height:'17%',}}
+    style={{ width: '63%' , height:'100%',}}
         >
       <FlatList
         scrollEnabled={false}
@@ -15,7 +15,7 @@ const sorted = orders.slice(0, 2);
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
           <Link href='/' 
-          className='flex flex-row bg-gray-200 rounded-md group mt-2 py-1 px-2' style={{ width: '100%', height: '10%' }}>
+          className='flex flex-row bg-gray-200 rounded-md group mt-2 py-1 px-2' style={{ width: '100%', height: '100%' }}>
             <Image
               source={typeof item.url === 'string' ? { uri: item.url } : item.url}
               className='bg-slate-50 rounded-lg'

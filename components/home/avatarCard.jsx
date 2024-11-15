@@ -4,14 +4,16 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Link } from 'expo-router';
 import OrderCard from '../order/orderCard';
 import useMediaQueryChecker from '@/hooks/mediaQueryChecker';
+import AvatarCardAnd from './avatarCard.android';
 
 
 const AvatarCard = ({ user }) => {
   const isMobile = useMediaQueryChecker();
-
+  if(isMobile){ return <AvatarCardAnd user={user} />}
+  else{
   return (
     <View className='flex bg-secondary-color rounded-md group drop-shadow-lg'
-    style={{ width: isMobile ? '100%' : '34%', height: isMobile ? 100 : '98%' }}>
+    style={{ width: '34%', height: '98%' }}>
       <View className='flex flex-row gap-2 p-4 w-full justify-start '
        style={{ width: '100%', height: '100%' }}>
       <View className='flex flex-col gap-4'
@@ -24,7 +26,7 @@ const AvatarCard = ({ user }) => {
         <Image
             source={typeof user.avatarIcon === 'string' ? { uri: user.avatarIcon } : user.avatarIcon}
             style={{ width: '100%', height: '108%' }}
-            className='z-20 duration-300 transition-all left-0 bottom-0 bg-gray-200 drop-shadow-lg rounded-b-lg   hover:scale-125'
+            className='z-20 duration-300 transition-all left-0 bottom-0 bg-gray-200 drop-shadow-lg rounded-b-lg   hover:bottom-[0.5em] hover:scale-105 hover:left-[-0.7em] hover:rounded-2xl'
             resizeMode="contain"
           />
            </Link>
@@ -38,6 +40,6 @@ const AvatarCard = ({ user }) => {
         </View>
         </View>
     </View>
-  )};
+  )}};
 
 export default AvatarCard;

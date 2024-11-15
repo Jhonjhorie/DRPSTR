@@ -40,7 +40,7 @@ const Header= () => {
               textAlign='left'
             />
      
-          <TouchableOpacity className="w-10 h-10 px-2 justify-center flex self-center text-left bg-slate-200 hover:bg-slate-300 group-hover:bg-primary-color duration-300 transition-all rounded-r-md ">
+          <TouchableOpacity className="w-10 h-10 px-2 justify-center flex self-center text-left bg-slate-200 group-hover:bg-primary-color duration-300 transition-all rounded-r-md ">
               <Ionicons name="search" size={20} className='group-hover:color-black color-primary-color duration-300 transition-all'/>
           </TouchableOpacity>
           

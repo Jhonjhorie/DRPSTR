@@ -12,7 +12,7 @@ const Carousel = ({ images }) => {
   const carouselHeight = isMobile ? 300 : 300;
 
   return (
-    <View style={{ width: carouselWidth, height: carouselHeight}} className='relative rounded-md bg-slate-200 drop-shadow-lg group'>
+    <View style={{ width: carouselWidth, height: carouselHeight}} className='relative rounded-md bg-slate-200 drop-shadow-lg group overflow-hidden'>
       <FlatList
         ref={flatListRef}
         className='z-50'
@@ -27,34 +27,37 @@ const Carousel = ({ images }) => {
         renderItem={({ item }) => (
           <View style={{ width: carouselWidth, height: carouselHeight }}>
             <Image source={typeof item.url === 'string' ? { uri: item.url } : item.url}   
-            style={isMobile ? { width: '70%', height: '70%', left: 15, top: 50 } : 
-            { width: '100%', height: '100%', left:0, top:0 }}
-            className='z-20 group-hover:scale-90 duration-300 transition-all absolute group-hover:left-24'
+            style={isMobile ? { width: '70%', height: '70%', left: 45, top: 50 } : 
+            { width: '100%', height: '100%', top:0 }}
+            className='z-20 group-hover:scale-90 duration-300 transition-all absolute left-0 group-hover:left-24'
             resizeMode="contain"/>
             {item.product && (
-             <Text className={`absolute text-secondary-color ${isMobile ? 'text-5xl bottom-2 left-2' : 'text-8xl bottom-8 left-0'} text-8xl font-bold group-hover:text-5xl line-clamp-1 group-hover:text-primary-color  group-hover:z-50 duration-300 transition-all`}>
+             <Text className={`absolute text-secondary-color ${isMobile ? 'text-4xl bottom-8 left-2' : 'text-8xl bottom-8 left-0'} font-bold group-hover:text-5xl line-clamp-1 group-hover:text-primary-color  group-hover:z-50 duration-300 transition-all`}>
                 {item.product}
               </Text>
             )}
             {item.rate && (
-              <View className='flex flex-row absolute top-4 right-4 items-start'>
-              <Text className={`${isMobile ? 'text-6xl' : 'text-8xl'} text-primary-color  font-bold`}>
-                {item.rate}   
+              <View className={`flex flex-row absolute ${isMobile ? `top-6 right-14` : `top-6 right-32 `} items-start`}>
+              <Text className={`${isMobile ? 'text-6xl' : 'text-8xl'} text-primary-color drop-shadow-2xl  font-bold`}>
+                {item.rate.toFixed(1)}  
               </Text>
-              {item.rate == 5 && (
-                <Ionicons size={isMobile ? 35:90} className="color-primary-color mr-1" color={'#9800FF'} name="star" />
+              {item.rate >= 4 && (
+                 <Image source={require('@/assets/images/others/fillfull.png')} style={{ width: isMobile? '80%' :'100%', height: '150%' }} className={`-z-10 absolute ${isMobile?`top-[-1.5em] right-[-3.5em]`:`top-[-1.5em] right-[-7.5em]`}`}
+                 resizeMode="contain"/>
               )}
-              {item.rate < 5 && item.rate != 0 && (
-                <Ionicons size={isMobile ? 35:90} className="color-primary-color mr-1" color={'#9800FF'} name="star-half" />
+              {item.rate < 4 && item.rate != 0 && (
+               <Image source={require('@/assets/images/others/fillhalf.png')}  style={{ width: isMobile? '80%' :'100%', height: '150%' }} className={`-z-10 absolute ${isMobile?`top-[-1.5em] right-[-3.5em]`:`top-[-1.5em] right-[-7.5em]`}`}
+               resizeMode="contain"/>
               )}
-              {item.rate == 0 && (
-                <Ionicons size={isMobile ? 35:90}className="color-primary-color mr-1" color={'#9800FF'} name="star-outline" />
+              {item.rate < 2 && (
+                <Image source={require('@/assets/images/others/fillno.png')}  style={{ width: isMobile? '80%' :'100%', height: '150%' }} className={`-z-10 absolute ${isMobile?`top-[-1.5em] right-[-3.5em]`:`top-[-1.5em] right-[-7.5em]`}`}
+                resizeMode="contain"/>
               )}
               </View>
             )}
             {item.shop && (
               <Link href='/'
-              className=' absolute top-2 group-hover:top-0 left-0  hover:bg-primary-color bg-secondary-color p-3 group-hover:p-4 rounded-r-lg duration-300 transition-all '
+              className={`absolute ${isMobile ? `rounded-lg left-2 ` : `rounded-r-lg group-hover:rounded-tr-none left-0`} top-2 group-hover:top-0   hover:bg-primary-color bg-secondary-color p-3 group-hover:p-4  duration-300 transition-all `}
               >
                 <Text className=' group-hover:text-2xl text-lg font-bold text-slate-50 duration-300 transition-all '>
                 {item.shop}
@@ -72,13 +75,28 @@ const Carousel = ({ images }) => {
             </Link>
           </View>
         )}
-      />
-        <Image source={require('@/assets/images/LOGO.svg')}  style={{ width: '50%', height: '80%' }}
-            className='-z-10 absolute left-3 top-0 opacity-30'
+      /> 
+        <Image source={require('@/assets/images/LOGO.svg')}  style={{ width: '50%', height: '50%' }}
+            className='-z-10 absolute left-0 top-10 opacity-100 drop-shadow-none group-hover:drop-shadow-lg duration-300 transition-all group-hover:scale-110'
+            resizeMode="contain"/>
+        <Image source={require('@/assets/images/others/carouselframe.png')}  style={{ width: isMobile?'140%':'55%', height: isMobile?'205%':'120%' }}
+            className={`-z-20 absolute ${isMobile?`left-[-5em] top-[-11.2em]`:`left-[-50px] top-[-1.8em]`}  opacity-50`}
+            resizeMode="contain"/>
+        <Image source={require('@/assets/images/home/mouth.svg')}  style={{ width: '15%', height: '50%' }}
+            className={`-z-20 absolute ${isMobile?`left-24 top-16`:`right-10 top-[10em]`}opacity-50'`}
+            resizeMode="contain"/>
+            <Image source={require('@/assets/images/others/name.png')}  style={{ width: '15%', height: '50%' }}
+            className='-z-20 absolute right-[-20px] top-48 rotate-[35deg] opacity-40 drop-shadow-2xl'
+            resizeMode="contain"/>
+            <Image source={require('@/assets/images/others/crown.png')}  style={{ width: '15%', height: '50%' }}
+            className='-z-20 absolute left-72 top-0 opacity-70 drop-shadow-2xl'
+            resizeMode="contain"/>
+             <Image source={require('@/assets/images/home/heart.svg')}  style={{ width: '15%', height: '50%' }}
+            className='-z-20 absolute right-44 top-40 opacity-100'
             resizeMode="contain"/>
       {/* Pagination Dots */}
       <View style={{ transform: [{ translateX: -((images.length * 10) / 2) }] }}
-      className='left-16 absolute bottom-1 flex flex-row'
+      className={`${isMobile?'left-44':'left-[27rem]'} absolute bottom-1 flex flex-row`}
       >
         {images.map((_, index) => (
           <View
@@ -89,7 +107,7 @@ const Carousel = ({ images }) => {
               borderRadius: 4,
               margin: 4,
             }}
-            className={`${activeIndex === index ? 'bg-primary-color' : 'bg-secondary-color'}`}
+            className={`${activeIndex === index ? 'bg-primary-color' : activeIndex === index-1 || activeIndex === index+1?'bg-white':'bg-secondary-color'} drop-shadow-lg`}
           />
         ))}
       </View>
@@ -97,14 +115,14 @@ const Carousel = ({ images }) => {
       {/* Left Arrow */}
       
         {!isMobile && (activeIndex > 0 && (
-          <TouchableOpacity onPress={handlePrev} style={{top: '40%', left: -20}} className='absolute top-1/2 hover:opacity-100 opacity-80 transition-all duration-300 left-1 p-1 rounded-lg bg-secondary-color'>
+          <TouchableOpacity onPress={handlePrev} style={{top: '40%', left: 0}} className='absolute top-1/2 hover:opacity-100 opacity-80 transition-all duration-300 left-1 p-1 rounded-r-md bg-secondary-color  z-50'>
             <Ionicons name="chevron-back" size={28} className='color-primary-color'/>
           </TouchableOpacity>
         ))}
 
         {/* Right Arrow */}
         {!isMobile && (activeIndex < images.length - 1 && (
-          <TouchableOpacity onPress={handleNext} style={{top: '40%', right: -20}} className='absolute top-1/2 hover:opacity-100 opacity-80 transition-all duration-300  p-1 rounded-lg bg-secondary-color'>
+          <TouchableOpacity onPress={handleNext} style={{top: '40%', right: 0}} className='absolute top-1/2 hover:opacity-100 opacity-80 just transition-all duration-300  p-1 rounded-l-md bg-secondary-color z-50'>
             <Ionicons name="chevron-forward" size={28} className='color-primary-color' />
           </TouchableOpacity>
         ))}
