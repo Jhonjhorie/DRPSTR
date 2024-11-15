@@ -7,6 +7,8 @@ import CategoriesRibbon from '@/components/products/categoriesRibbon';
 import ProductsView from '@/components/products/productsView';
 import { currUser, Images, orderSample } from '@/constants/sampleData';
 import useMediaQueryChecker from '@/hooks/mediaQueryChecker';
+import CategoriesRibbonAnd from '@/components/products/categoriesRibbon.android';
+import ProductsViewAnd from '@/components/products/productsView.android';
 
 const HomeScreen = () => {
   const activePage = "Home";
@@ -37,10 +39,12 @@ const HomeScreen = () => {
   
           {/* Mid Section */}
           <View style={{ width: '100%', gap: 30, flexDirection: 'row' }} className="flex mb-4">
-            <CategoriesRibbon active={'all'} />
+            {isMobile ? <CategoriesRibbonAnd active={'all'}/> : <CategoriesRibbon active={'all'} />}
+            
           </View>
           {/* Add any additional sections here */}
-          <ProductsView categories={'all'}/>
+          {isMobile ? <ProductsViewAnd categories={'all'} /> :<ProductsView categories={'all'}/>}
+           
         </ScrollView>
       </View>
     </View>
