@@ -1,55 +1,56 @@
 import { Animated, Text, View, TouchableOpacity,
-     StyleSheet, Dimensions 
+     StyleSheet, Dimensions, Image 
     
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '@/components/shop/shopbar'
-import {
-  LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart
-} from "react-native-chart-kit";
 import { Ionicons } from '@expo/vector-icons';
-
 
 const shopdashboard = () => {
 
   return (
+    
     <View className='bg-slate-300 h-full w-full flex-row overflow-hidden'>
-     
+      <View style={styles.container} className='absolute  self-end bottom-0 right-0 z-0'>
+        <Image
+        source={require('../../../assets/images/blackLogo.png')}  
+        style={styles.image}
+        resizeMode="cover" 
+        className='blur-sm'
+        />
+      </View>
       <View className='h-full absolute  z-50'>
         <Sidebar/>
       </View>
-      <View className='w-full ml-0 md:ml-16 h-auto  overflow-y-scroll '>
+
+      {/* MAIN PAGE DASHBOARD */}
+      <View className='w-full ml-0 md:ml-10 h-auto  overflow-y-scroll '>
         <View className='h-[200%] w-full '>
-          <View className='w-full h-[13%] p-2 md:flex-row gap-5'>
-            <View className='w-1/2 h-full p-4 px-16 align-middle '>
+          <View className='w-full h-[13%] p-2 lg:flex-row gap-5'>
+            <View className='w-1/2 h-full p-4 px-14 align-middle '>
               <Text className='text-5xl font-bold '>Dashboard</Text>
-              <View className='md:flex-row p-1 mt-5 gap-16  '>   
-                <View className='w-[25%] h-20 '>
+              <View className='md:flex-row p-1 mt-5 gap-10  '>   
+                <View className='w-[30%]  bg-slate-50 p-3 rounded-md '>
                   <View className=' justify-between flex-row '>
-                    <Text className='text-xl text-slate-800 '>Followers </Text>
+                    <Text className='text-lg  text-slate-800 '>Followers </Text>
                     <Ionicons className='text-violet-950' size={24} name='people' ></Ionicons>
                   </View>
                   <View className='h-[0.3%] w-full bg-slate-500'>
                     <Text className='text-3xl font-semibold'>150,2k</Text>
                   </View>
                 </View>
-                <View className='w-[25%] h-20 '>
+                <View className='w-[30%]  bg-slate-50 p-3 rounded-md '>
                   <View className=' justify-between flex-row '>
-                    <Text className='text-xl text-slate-800 '>Orders </Text>
+                    <Text className='text-lg text-slate-800 '>Orders </Text>
                     <Ionicons className='text-violet-950' size={24} name='file-tray-stacked' ></Ionicons>
                   </View>
                   <View className='h-[0.3%] w-full bg-slate-500'>
                     <Text className='text-3xl font-semibold'>17,4k</Text>
                   </View>
                 </View>
-                <View className='w-[30%] h-20'>
+                <View className='w-[30%]  bg-slate-50 p-3 rounded-md '>
                   <View className=' justify-between flex-row '>
-                    <Text className='text-xl text-slate-800 '>Total Income </Text>
+                    <Text className='text-lg text-slate-800 '>Total Income </Text>
                     <Ionicons className='text-violet-950' size={24} name='logo-stackoverflow' ></Ionicons>
                   </View>
                   <View className='h-[0.3%] w-full bg-slate-500'>
@@ -58,67 +59,54 @@ const shopdashboard = () => {
                 </View>
               </View>
             </View>
-            <View className='w-1/2  h-auto bg-slate-400'>
-            
-          </View>
+            <View className='w-1/2  h-52 p-2  rounded-sm '
+            style={styles.profile}>
+              <View className='w-[90%]  h-full flex-row gap-2 bg-slate-100 rounded-md '>
+                {/* SHOP NAME */}
+                <View className='h-full w-[60%] rounded-md  p-2 bg-slate-100 '>
+                  <View className=' h-auto w-full flex-row p-5 '>
+                    <View className='h-full  flex justify-end p-2'>
+                      <Text className='text-3xl text-slate-900 justify-end flex'>4.5</Text>
+                      <Text className='text-lg text-slate-800'>Overall Rating</Text>
+                    </View>
+
+                    <View
+                    className='h-full w-[70%] '
+                    style={{ justifyContent: 'center', alignItems: 'center', height: 100, }}>
+                      <Image
+                        source={require('../../../assets/images/shop/Starrating.svg')}
+                        style={{ width: '50%', height: '100%' }}
+                        resizeMode="cover"
+                        className='rounded-md '
+                      />
+                    </View>  
+                  </View>
+                  
+                  <Text className='text-3xl self-center absolute bottom-5 font-semibold '>SAINT MERCY APPAREL</Text>
+                </View>
+                <View 
+                  style={{ justifyContent: 'center', alignItems: 'center' }}
+                  className=' h-full w-[38%] p-2 '>
+                  <Image
+                    source={require('../../../assets/images/logosaintshop.jpg')}
+                    style={{ width: '100%', height: '100%' }}
+                    resizeMode="cover"
+                    className='rounded-md '
+                  />
+                </View>
+               
+              </View>
+            </View>
           </View>
           <View>
-            <View className='w-[40%] rounded-md p-2  bg-slate-200  '>
-              <Text>Bezier Line Chart</Text>
-              <LineChart
-              className = ''
-                data={{
-                  labels: ["January", "February", "March", "April", "May", "June"],
-                  datasets: [
-                    {
-                      data: [
-                        Math.random() * 100,
-                        Math.random() * 100,
-                        Math.random() * 100,
-                        Math.random() * 100,
-                        Math.random() * 100,
-                        Math.random() * 100
-                      ]
-                    }
-                  ]
-                }}
-                width={500} // from react-native
-                height={220}
-                yAxisLabel="$"
-                yAxisSuffix="k"
-                yAxisInterval={1} // optional, defaults to 1
-                chartConfig={{
-                  backgroundColor: "#e26a00",
-                  backgroundGradientFrom: "#fb8c00",
-                  backgroundGradientTo: "#ffa726",
-                  decimalPlaces: 2, // optional, defaults to 2dp
-                  color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                  labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                  style: {
-                    borderRadius: 16
-                  },
-                  propsForDots: {
-                    r: "6",
-                    strokeWidth: "2",
-                    stroke: "#ffa726"
-                  }
-                }}
-                bezier
-                style={{
-                  marginVertical: 8,
-                  borderRadius: 16,
-                  alignSelf: 'center'
-                }}
-              />
-            </View>
+            
+            
                         
 
 
           </View>
         </View>
-        
-        <Text className='text-center'>This ss the main pages</Text>
-        <Text className=''>This is ssthe mainsss pagessssssssss</Text>
+       
       </View>
       
 
@@ -128,4 +116,12 @@ const shopdashboard = () => {
 
 export default shopdashboard
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+
+  imageshrink: {
+    height: 100,
+    width: 100,
+    resizeMode: 'fill',
+    backgroundColor: '#000'
+  }
+})

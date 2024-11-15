@@ -4,6 +4,7 @@ import { Animated, Text, TouchableOpacity, View,
    Dimensions, Image, StyleSheet, Platform, subscription,
   
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const ShopBar = () => {
   const [expanded, setExpanded] = useState(false);
@@ -22,7 +23,8 @@ const ShopBar = () => {
     handleResize();
     Dimensions.addEventListener('change', handleResize);
     return () => {
-      subscription?.remove(); 
+      //subscription?.remove(); 
+      Dimensions.removeEventListener('change', handleResize);
     };
   }, []);
 
@@ -109,6 +111,9 @@ const ShopBar = () => {
       </TouchableOpacity>
     );
   }
+  //Navigation pages
+  const navigation = useNavigation();
+
 
   return (
     <View
@@ -172,13 +177,16 @@ const ShopBar = () => {
         <View style={{ width: '90%', marginTop: -70 }}>
           {/* List of sidebar items */}
           {[
-            { icon: 'stats-chart', label: 'Dashboard' },
-            { icon: 'notifications', label: 'Notification' },
-            { icon: 'pricetag', label: 'Products' },
-            { icon: 'people', label: 'Followers' },
-            { icon: 'settings', label: 'Settings' },
+           { icon: 'stats-chart', label: 'Dashboard', screen: 'shopdashboard' },
+           { icon: 'notifications', label: 'Notification', screen: 'notifications' },
+           { icon: 'pricetag', label: 'Products', screen: 'products' },
+           { icon: 'people', label: 'Followers', screen: 'followers' },
+           { icon: 'settings', label: 'Settings', screen: 'settings' },
           ].map((item, index) => (
-            <TouchableOpacity key={index} style={{ marginBottom: 5 }}
+            <TouchableOpacity 
+            key={index} 
+            onPress={() => navigation.navigate(item.screen)}
+            style={{ marginBottom: 5 }}
             className='hover:bg-[#cec4ce] rounded-sm '
             >
               <View
