@@ -23,8 +23,8 @@ const ShopBar = () => {
     handleResize();
     Dimensions.addEventListener('change', handleResize);
     return () => {
-      //subscription?.remove(); 
-      Dimensions.removeEventListener('change', handleResize);
+      subscription?.remove(); 
+     
     };
   }, []);
 
