@@ -1,16 +1,24 @@
 import React, { useState, useRef } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, ScrollView, Animated } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, ScrollView, Animated, useWindowDimensions, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
+import useMediaQuery from '@/hooks/mediaQueryChecker';
+import HeaderMob from './chatMob.android';
 
-const Header = () => {
+
+
+
+const HeaderWeb = () => {
+  const isMobile = useMediaQuery();
   const [ChatVisible, setChat] = useState(false);
   const [selectChat, setSelect] = useState(null);
   const [minimized, setMinimized] = useState(false);
   
   const messages = Array.from({ length: 12 }, (_, i) => `Message ${i + 1}`);
   const animate = useRef(new Animated.Value(300)).current;
-  const chatAnim = useRef(new Animated.Value(0)).current; 
+  const chatAnim = useRef(new Animated.Value(0)).current;
+
+  
 
   const toggleChatbox = () => {
     setChat(!ChatVisible);
@@ -45,6 +53,11 @@ const Header = () => {
     }).start();
   };
 
+  if(isMobile){return <HeaderMob/>}
+  else{
+
+
+
   return (
     <View className="flex-row items-center max-h-20 px-16 py-12 bg-slate-50 sticky top-0 z-30">
       {/* Search and Cart */}
@@ -52,7 +65,7 @@ const Header = () => {
         <Link href="/" asChild>
           <TouchableOpacity>
             <Image
-              className="object-fit md:max-h-16 md:max-w-52 max-h-12 max-w-36"
+              className={`object-fit ${isMobile ? 'max-h-12 max-w-36' : 'md:max-h-16 md:max-w-52'}`}
               source={require('../assets/images/BlackLongLogo.svg')}
             />
           </TouchableOpacity>
@@ -60,7 +73,7 @@ const Header = () => {
       </View>
       
       <View className="flex-row items-center ml-8 flex gap-4 sm:flex-auto justify-end">
-        <View className="group relative h-10 flex-row items-center bg-slate-200 rounded-md pl-3 py-1 w-56 lg:hover:w-[60vw] md:hover:w-[50vw] hover:w-[40vw] duration-300 transition-all">
+        <View className={`group relative h-10 flex-row items-center bg-slate-200 rounded-md pl-3 py-1 ${isMobile ? 'w-40' : 'w-56'} lg:hover:w-[60vw] md:hover:w-[50vw] hover:w-[40vw] duration-300 transition-all`}>
           <TextInput
             placeholder="Search..."
             placeholderTextColor="#888"
@@ -78,7 +91,7 @@ const Header = () => {
         </Link>
 
         {/* Chatbox */}
-        <TouchableOpacity onPress={toggleChatbox} >
+        <TouchableOpacity onPress={toggleChatbox}>
           <Ionicons name="chatbox-ellipses" size={24} className="color-black hover:color-[--primary-color]" />
         </TouchableOpacity>
 
@@ -93,7 +106,7 @@ const Header = () => {
 
             <ScrollView className="max-h-60">
               {messages.slice(0, 10).map((message, index) => (
-                <TouchableOpacity key={index} onPress={() => openChat(message)}className='hover:bg-slate-100'>
+                <TouchableOpacity key={index} onPress={() => openChat(message)} className="hover:bg-slate-100">
                   <View className="p-4 border-b border-gray-200 flex-row items-center">
                     <Image
                       source={{ uri: 'https://via.placeholder.com/80' }}
@@ -105,10 +118,10 @@ const Header = () => {
               ))}
             </ScrollView>
             {messages.length > 10 && !minimized && (
-      <TouchableOpacity onPress={() => {/* Navigate to all messages view */}} className="p-2 bg-slate-100 hover:bg-slate-200 text-center">
-        <Text className="text-center color-primary-color">See All</Text>
-      </TouchableOpacity>
-    )}
+              <TouchableOpacity onPress={() => {/* Navigate to all messages view */}} className="p-2 bg-slate-100 hover:bg-slate-200 text-center">
+                <Text className="text-center color-primary-color">See All</Text>
+              </TouchableOpacity>
+            )}
           </View>
         )}
       </View>
@@ -128,10 +141,10 @@ const Header = () => {
             ],
             position: 'absolute',
             justifyContent: 'space-between',
-            top: minimized ? 500 : 475,
+            top: minimized ? (isMobile ? 500 : 475) : (isMobile ? 475 : 475),
             right: 65,
             width: '15.5%',
-            height: minimized ? '50px' : 300,
+            height: minimized ? 50 : (isMobile ? 150 : 300),
             backgroundColor: 'white',
             borderTopWidth: 1,
             borderColor: '#ddd',
@@ -168,5 +181,6 @@ const Header = () => {
     </View>
   );
 };
+}
 
-export default Header;
+export default HeaderWeb;
