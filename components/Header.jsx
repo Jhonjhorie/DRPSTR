@@ -1,12 +1,17 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
+import { View, TextInput, TouchableOpacity, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
+import HeaderAnd from './Header.android';
+import useMediaQueryChecker from '@/hooks/mediaQueryChecker';
 
 
 
 const Header= () => {
+  const isMobile = useMediaQueryChecker();
 
+  if(isMobile) return <HeaderAnd />
+  else{
   return (
     <View 
     className="flex-row items-center max-h-20 px-16 py-12 bg-slate-50 sticky top-0 z-30">
@@ -35,7 +40,7 @@ const Header= () => {
               textAlign='left'
             />
      
-          <TouchableOpacity className="w-10 h-10 px-2 justify-center flex self-center text-left bg-slate-200 hover:bg-slate-300 group-hover:bg-primary-color duration-300 transition-all rounded-r-md ">
+          <TouchableOpacity className="w-10 h-10 px-2 justify-center flex self-center text-left bg-slate-200 group-hover:bg-primary-color duration-300 transition-all rounded-r-md ">
               <Ionicons name="search" size={20} className='group-hover:color-black color-primary-color duration-300 transition-all'/>
           </TouchableOpacity>
           
@@ -56,7 +61,8 @@ const Header= () => {
         </View>
       </View>
     </View>
-  );
+    
+  )};
 };
 
 export default Header;
