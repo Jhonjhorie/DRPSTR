@@ -1,118 +1,107 @@
+// BasicDisplay.js
 import React from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-  StyleSheet,
-} from "react-native";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import { View, StyleSheet } from "react-native";
 
-const CharacterCreationSidebar = () => {
+const CharacterFace = () => {
   return (
-    <ScrollView className="flex-1 bg-slate-200 p-4">
-      <Text className="text-2xl font-bold mb-6 text-gray-800">
-        Character Creation
-      </Text>
+    <>
+      {/* Head */}
+      <mesh position={[0, 1.5, 0]}>
+        <sphereGeometry args={[0.5, 32, 32]} />
+        <meshStandardMaterial color={"#ffcc99"} />
+      </mesh>
 
-      <View className="flex-row">
-        <View>
-          {/* Body Orientation */}
-          <View className="mb-6">
-            <Text className="text-lg font-semibold text-gray-800 mb-2">
-              Gender
-            </Text>
-            <View className="flex-row">
-              <TouchableOpacity className="py-2 px-4 bg-indigo-500 rounded-lg mb-2">
-                <Text className="text-white">Boy</Text>
-              </TouchableOpacity>
-              <TouchableOpacity className="py-2 px-4 bg-indigo-500 rounded-lg mb-2 mx-2">
-                <Text className="text-white">Girl</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+      {/* Eyes */}
+      <mesh position={[-0.15, 1.65, 0.25]}>
+        <sphereGeometry args={[0.1, 32, 32]} />
+        <meshStandardMaterial color={"white"} />
+      </mesh>
+      <mesh position={[0.15, 1.65, 0.25]}>
+        <sphereGeometry args={[0.1, 32, 32]} />
+        <meshStandardMaterial color={"white"} />
+      </mesh>
 
-          {/* Height Selection */}
-          <View className="mb-6">
-            <Text className="text-lg font-semibold text-gray-800 mb-2">
-              Height
-            </Text>
-            <View className="flex-row">
-              <TouchableOpacity className="py-2 px-4 bg-indigo-500 rounded-lg mb-2">
-                <Text className="text-white">Short</Text>
-              </TouchableOpacity>
-              <TouchableOpacity className="py-2 px-4 bg-indigo-500 rounded-lg mb-2 mx-2">
-                <Text className="text-white">Average</Text>
-              </TouchableOpacity>
-              <TouchableOpacity className="py-2 px-4 bg-indigo-500 rounded-lg mb-2">
-                <Text className="text-white">Tall</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+      {/* Pupils */}
+      <mesh position={[-0.15, 1.65, 0.35]}>
+        <sphereGeometry args={[0.05, 32, 32]} />
+        <meshStandardMaterial color={"black"} />
+      </mesh>
+      <mesh position={[0.15, 1.65, 0.35]}>
+        <sphereGeometry args={[0.05, 32, 32]} />
+        <meshStandardMaterial color={"black"} />
+      </mesh>
 
-          {/* Weight Selection */}
-          <View className="mb-6">
-            <Text className="text-lg font-semibold text-gray-800 mb-2">
-              Weight
-            </Text>
-            <View className="flex-row">
-              <TouchableOpacity className="py-2 px-4 bg-indigo-500 rounded-lg mb-2">
-                <Text className="text-white">Slim</Text>
-              </TouchableOpacity>
-              <TouchableOpacity className="py-2 px-4 bg-indigo-500 rounded-lg mb-2 mx-2">
-                <Text className="text-white">Average</Text>
-              </TouchableOpacity>
-              <TouchableOpacity className="py-2 px-4 bg-indigo-500 rounded-lg mb-2">
-                <Text className="text-white">Heavy</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+      {/* Mouth */}
+      <mesh position={[0, 1.4, 0.25]}>
+        <planeGeometry args={[0.3, 0.1]} />
+        <meshStandardMaterial color={"red"} />
+      </mesh>
 
-          {/* Hair Options */}
-          <View className="mb-6">
-            <Text className="text-lg font-semibold text-gray-800 mb-2">
-              Hair
-            </Text>{" "}
-            <View className="flex-row">
-              <TouchableOpacity className="py-2 px-4 bg-indigo-500 rounded-lg mb-2">
-                <Text className="text-white">Short</Text>
-              </TouchableOpacity>
-              <TouchableOpacity className="py-2 px-4 bg-indigo-500 rounded-lg mb-2 mx-2">
-                <Text className="text-white">Medium</Text>
-              </TouchableOpacity>
-              <TouchableOpacity className="py-2 px-4 bg-indigo-500 rounded-lg mb-2">
-                <Text className="text-white">Long</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-      <View style={styles.container}>
-        {/* Local Image */}
-        <Image
-          source={require("../../../assets/images/boy.png")}
-          style={styles.image}
-        />
-      </View>
-      </View>
-      <TouchableOpacity className="py-2 w-60  px-4 bg-indigo-500 rounded-lg mb-2">
-                <Text className="text-white text-center">Save Avatar</Text>
-              </TouchableOpacity>
-
-    </ScrollView>
+      {/* Nose */}
+      <mesh position={[0, 1.5, 0.4]}>
+        <coneGeometry args={[0.05, 0.1, 32]} />
+        <meshStandardMaterial color={"#ffcc99"} />
+      </mesh>
+    </>
   );
 };
 
-export default CharacterCreationSidebar;
+const CharacterBody = () => {
+  return (
+    <>
+      {/* Body */}
+      <mesh position={[0, 0.5, 0]}>
+        <cylinderGeometry args={[0.4, 0.4, 1, 32]} />
+        <meshStandardMaterial color={"#007BFF"} /> {/* Shirt color */}
+      </mesh>
+
+      {/* Arms */}
+      <mesh position={[-0.6, 0.5, 0]}>
+        <cylinderGeometry args={[0.1, 0.1, 1, 32]} />
+        <meshStandardMaterial color={"#ffcc99"} />
+      </mesh>
+      <mesh position={[0.6, 0.5, 0]}>
+        <cylinderGeometry args={[0.1, 0.1, 1, 32]} />
+        <meshStandardMaterial color={"#ffcc99"} />
+      </mesh>
+
+      {/* Legs */}
+      <mesh position={[-0.25, -0.5, 0]}>
+        <cylinderGeometry args={[0.15, 0.15, 1, 32]} />
+        <meshStandardMaterial color={"#6c757d"} /> {/* Pants color */}
+      </mesh>
+      <mesh position={[0.25, -0.5, 0]}>
+        <cylinderGeometry args={[0.15, 0.15, 1, 32]} />
+        <meshStandardMaterial color={"#6c757d"} />
+      </mesh>
+    </>
+  );
+};
+
+const BasicDisplay = () => {
+  return (
+    <View style={styles.container}>
+      <Canvas style={styles.canvas}>
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[5, 5, 5]} intensity={1} />
+        <CharacterFace />
+        <CharacterBody />
+        <OrbitControls enableZoom={true} />
+      </Canvas>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: "#000",
   },
-  image: {
-      resizeMode: 'cover',   
-      width: 180,
-      height: 500,
+  canvas: {
+    flex: 1,
   },
 });
+
+export default BasicDisplay;
