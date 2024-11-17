@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import useResponsiveColumns from './useResponsiveColumn';
 
 
-const ProductsView = () => {
+const ProductsViewAnd = () => {
   const { numColumns, key } = useResponsiveColumns();
 
   // placeholder para sa stretching haha gusto ipilit flex
@@ -16,7 +16,7 @@ const ProductsView = () => {
   }
 
   return (
-    <View style={{ width: '100%' }} className='rounded-lg flex-row flex items-center pb-24 align-middle'>
+    <View style={{ width: '100%' }} className='rounded-lg flex-row flex items-center mb-16 pb-24 align-middle'>
       <Text className='absolute left-[-6.8em] top-24 rotate-[270deg] text-lg text-slate-500'>
         Order Now, Drip Later
       </Text>
@@ -30,13 +30,13 @@ const ProductsView = () => {
           item.empty ? ( 
             <View
               style={{ flex: 1}}
-              className="flex flex-col mx-1 mb-2 p-2 rounded-md "
+              className="flex flex-col mx-2 mb-2 p-2 rounded-md "
             />
           ) : (
             <Link
               href="/"
               
-              className="flex flex-col mx-1 mb-2 p-2 rounded-md group hover:scale-105 gap-1 bg-slate-50 drop-shadow-sm"
+              className="flex flex-col mx-1 mb-2 p-1 rounded-md group hover:scale-105  bg-slate-50 drop-shadow-sm"
               style={{ flex: 1, alignItems:'center' }}
             >
               {item.str && (
@@ -61,7 +61,7 @@ const ProductsView = () => {
               </View>
               <Image
                 source={typeof item.url === 'string' ? { uri: item.url } : item.url}
-                style={{ width: 180, height: 200 }}
+                style={{ width: 90, height: 100 }}
                 resizeMode="contain"
               />
               <View style={{ width: '95%' }} className="flex flex-col">
@@ -78,23 +78,19 @@ const ProductsView = () => {
                   )}
                   <View className="flex flex-row items-center">
                     <Text className="text-primary-color text-md font-thin">
-                      {item.rate.toFixed(1)}{' '}
+                      {item.rate}{' '}
                     </Text>
-                      {item.rate >= 4 && (
-                      <Image source={require('@/assets/images/others/fillfull.png')} style={{ width: 15, height: 20}} className=''
-                      resizeMode="contain"/>
+                    {item.rate == 5 && (
+                      <Ionicons size={13} className="color-primary-color mr-1" color={'#9800FF'} name="star" />
                     )}
-                    {item.rate < 4 && item.rate != 0 && (
-                    <Image source={require('@/assets/images/others/fillhalf.png')}  style={{ width: 15, height: 20}} className=''
-                    resizeMode="contain"/>
+                    {item.rate < 5 && item.rate != 0 && (
+                      <Ionicons size={13} className="color-primary-color mr-1" color={'#9800FF'} name="star-half" />
                     )}
-                    {item.rate < 2 && (
-                      <Image source={require('@/assets/images/others/fillno.png')}  style={{ width: 15, height: 20}} className=''
-                      resizeMode="contain"/>
-                  
+                    {item.rate == 0 && (
+                      <Ionicons size={13} className="color-primary-color mr-1" color={'#9800FF'} name="star-outline" />
                     )}
                     <Text className="text-secondary-color text-md font-thin">
-                      |{' '}{item.sold} sold
+                      | {item.sold} sold
                     </Text>
                   </View>
                 </View>
@@ -108,4 +104,4 @@ const ProductsView = () => {
   );
 };
 
-export default ProductsView;
+export default ProductsViewAnd;

@@ -7,7 +7,7 @@ const sorted = orders.slice(0, 2);
 
   return (
     <View className='overflow-hidden'
-    style={{ width: '63%' , height:'77%',}}
+    style={{ width: '63%' , height:'100%',}}
         >
       <FlatList
         scrollEnabled={false}
