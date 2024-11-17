@@ -1,29 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const MyOrders = () => {
+  // State to track the selected tab
+  const [selectedTab, setSelectedTab] = useState("All");
+
+  const tabs = ["All", "To Pay", "To Ship", "To Receive", "Received (32)"];
+
   return (
     <ScrollView className="p-4 bg-slate-200 flex-1">
       <Text className="text-xl font-bold text-gray-800 mb-6">My Orders</Text>
 
       {/* Navigation Tabs */}
       <View className="flex-row justify-around p-1">
-        {["All", "To Pay", "To Ship", "To Receive", "Received (32)"].map((tab, index) => (
-          <TouchableOpacity key={index} className="flex-1 py-1">
-            <Text className="text-center text-gray-800 font-semibold">{tab}</Text>
+        {tabs.map((tab, index) => (
+          <TouchableOpacity
+            key={index}
+            className="flex-1 py-1"
+            onPress={() => setSelectedTab(tab)}
+          >
+            <Text
+              className={`text-center font-semibold ${
+                selectedTab === tab ? 'text-slate-900' : 'text-gray-800'
+              }`}
+            >
+              {tab}
+            </Text>
+            {/* Indicator for the selected tab */}
+            {selectedTab === tab && (
+              <View className="w-full h-1 bg-slate-900 mt-1 rounded-full" />
+            )}
           </TouchableOpacity>
         ))}
       </View>
-        <View className='bg-slate-900 h-1 w-full'></View>
-  
+
+
+      {/* Search Bar */}
       <View className="flex-1 bg-white px-4 py-4 mb-6 mt-2 flex-row items-center rounded-md">
         <Ionicons name="search" size={20} color="gray" className="absolute left-4" />
-        
         <TextInput
           placeholder="Search by Item or Store name"
           placeholderTextColor="gray"
-          style={{ paddingLeft: 32 }} // Adds padding to make space for the icon
+          style={{ paddingLeft: 32 }}
           className="flex-1 text-gray-700"
         />
       </View>
@@ -35,7 +54,7 @@ const MyOrders = () => {
         <Text className="text-green-500 font-medium mb-2">Received</Text>
         <View className="flex-row items-center mb-2">
           <Image
-            source={{ uri: 'https://via.placeholder.com/80' }} 
+            source={{ uri: 'https://via.placeholder.com/80' }}
             className="w-20 h-20 mr-4 rounded-lg"
           />
           <View className="flex-1">
@@ -56,7 +75,7 @@ const MyOrders = () => {
         <Text className="text-green-500 font-medium mb-2">Received</Text>
         <View className="flex-row items-center mb-2">
           <Image
-            source={{ uri: 'https://via.placeholder.com/80' }}  
+            source={{ uri: 'https://via.placeholder.com/80' }}
             className="w-20 h-20 mr-4 rounded-lg"
           />
           <View className="flex-1">
