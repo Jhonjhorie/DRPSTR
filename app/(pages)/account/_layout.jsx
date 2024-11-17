@@ -2,6 +2,11 @@ import React from "react";
 import { Link, Stack } from "expo-router";
 import { View, StyleSheet } from "react-native";
 import SideBarNav from "@/components/BarNav";
+
+
+import RibbonNavigation from '@/components/BarNav';
+
+
 import RibbonTab from "@/components/ribbonTab";
 
 const innerSideBar = [
@@ -29,12 +34,11 @@ const ribbonItems = [
 const UserLayout = () => {
   return (
     <View style={styles.container}>
-      <SideBarNav innerSidebar={innerSideBar} activeName="Featured" />
+        <RibbonNavigation items={ribbonItems} activeName={'Notification'}/>
 
       {/* Main Content */}
       <View style={styles.mainContent}>
-      <RibbonTab ribbonItems={ribbonItems} activeTab={"For You"}/>
-
+ 
         {/* Stack Navigation */}
         <View style={styles.contentContainer}>
           <Stack screenOptions={{ headerShown: false }}>
@@ -42,7 +46,9 @@ const UserLayout = () => {
           </Stack>
         </View>
       </View>
+
     </View>
+ 
   );
 };
 
