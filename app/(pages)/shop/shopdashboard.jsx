@@ -25,7 +25,7 @@ const shopdashboard = () => {
 
       {/* MAIN PAGE DASHBOARD */}
       <View className='w-full ml-0 md:ml-10 h-auto  overflow-y-scroll '>
-        <View className='h-[200%] w-full '>
+        <View className='h-auto w-full '>
           <View className='w-full h-[13%] p-2 align-middle lg:flex-row gap-3 md:gap-5'>
 
              {/* Dashboard*/}
@@ -102,20 +102,69 @@ const shopdashboard = () => {
                
               </View>
             </View>
-          </View>
+          </View>      
           <View>
-            
-            
-                        
-
-
           </View>
         </View>
-       
+
+        <View className='w-full h-full lg:flex-row  rounded-md'>
+          <View className='w-full lg:w-1/2 h-[30%] p-2 px-4 md:px-12 '>
+            <View className='w-full h-full bg-slate-100 p-2 rounded-md pl '>
+              <Image
+                source={require('../../../assets/images/shop/chart.png')}  
+                className='rounded-md'
+                resizeMode="cover"
+                style={{ width: '100%', height: '100%' }}
+              />
+            </View>
+          </View>
+          <View className='w-full lg:w-1/2 h-[60%]  gap-2 flex-row px-10 lg:px-5 lg:pr-16 lg:p-2 '>
+            <View className='w-1/2 h-1/2 bg-slate-50 p-2  rounded-md'>
+                <View className='w-full h-full bg-slate-300 rounded-md'>
+                  <Image
+                  source={require('../../../assets/images/shop/pie.png')}  
+                  className='rounded-md'
+                  resizeMode="cover"
+                  style={{ width: '100%', height: '100%' }}
+                  />
+                </View>
+            </View>
+            <View className='w-1/2 h-[90%] bg-slate-50 px-2 pt-1 rounded-md'>
+              <Text className='text-xl font-semibold m-2'>Notifications</Text>
+                <View className='w-full h-[85%] bg-slate-300 p-2 rounded-md'>
+                  <View className='flex w-full h-14 flex-row rounded-md p-2 mb-1 hover:shadow-sm hover:bg-violet-400 cursor-pointer hover:duration-300 bg-slate-100'>
+                    <View className='rounded-full h-full w-10  '>
+                    <Image
+                        className="object-cover rounded-full border"
+                        style={{ width: '100%', height: '100%' }}
+                        resizeMode="cover"
+                        source={require('../../../assets/images/sample2.jpg')}
+                    />
+                    </View>
+                    <Text className=' ml-1 font-semibold text-slate-900 '>Paolo {"\n"} <span className='text-[10px] font-normal '>Just made an order</span></Text>
+                  </View>
+                  <View className='flex w-full h-14 flex-row rounded-md p-2 mb-1 hover:shadow-sm hover:bg-violet-400 cursor-pointer hover:duration-300 bg-slate-100'>
+                    <View className='rounded-full h-full w-10  '>
+                    <Image
+                        className="object-cover rounded-full border"
+                        style={{ width: '100%', height: '100%' }}
+                        resizeMode="cover"
+                        source={require('../../../assets/images/erica.jpg')}
+                    />
+                    </View>
+                    <Text className=' ml-1 font-semibold text-slate-900 '>Erica mae {"\n"} <span className='text-[10px] font-normal '>Just made an order</span></Text>
+                  </View>
+                </View>
+            </View>
+          </View>
+        </View>
+
+
       </View>
       
-
+     
     </View>
+    
   )
 }
 
