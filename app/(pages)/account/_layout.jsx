@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, Stack } from "expo-router";
 import { View, StyleSheet } from "react-native";
+
+
 import SideBarNav from "@/components/BarNav";
 
 
@@ -25,16 +27,22 @@ const innerSideBar = [
 ];
 
 
-const ribbonItems = [
-  { label: "Home", path: "/(pages)/mall", icon: "home" }, 
-  { label: "Order", path: "/(pages)/shop", icon: "shirt" },
-  { label: "Account", path: "/(pages)/account", icon: "person" },
-];
 
 const UserLayout = () => {
   return (
     <View style={styles.container}>
-        <RibbonNavigation items={ribbonItems} activeName={'Notification'}/>
+
+      {/* Absolute s */}
+
+      <View style={styles.ribbonStyle}>
+        <RibbonNavigation  activeName={'Account'}/>
+
+      </View>
+      {/* Sidebar */}
+
+      
+      <SideBarNav style={styles.sidebar} innerSidebar={innerSideBar} activeName="Featured" />
+
 
       {/* Main Content */}
       <View style={styles.mainContent}>
@@ -60,10 +68,20 @@ const styles = StyleSheet.create({
   mainContent: {
     flex: 1,
     flexDirection: "row",
+    paddingLeft: 20,
+    
   },
   contentContainer: {
     flex: 1,
-  },
+ 
+   },
+  ribbonStyle: {
+    position: 'absolute',
+     width: '100%',
+    zIndex: 10,  
+    display: 'flex',
+    flexDirection: 'row',
+    }, 
 });
 
 export default UserLayout;

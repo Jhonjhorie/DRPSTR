@@ -5,25 +5,21 @@ import { Link, Stack } from 'expo-router';
 
 import Header from '@/components/Header';
 import RibbonNavigation from '@/components/BarNav';
-
-const ribbonItems = [
-  { label: 'Home', path: '/' },
-  { label: 'Order', path: '/(pages)/shop' }, 
-];
+ 
 
 
 const CartLayout = () => {
   return (
     <View style={styles.container}>
-      {/* Header */}
-        <Header/>
- 
-      {/* Sub-header Navigation */}
-      {/* <RibbonNavigation items={ribbonItems} /> */}
- 
+           <View style={styles.ribbonStyle} >
+
+<RibbonNavigation  />  
+</View>           <View  className='w-12' >
+
+ </View>
       {/* Stack Navigation for screens */}
       <Stack screenOptions={{
-        headerShown: false, // Hides the header for all screens in the User module
+        headerShown: false,  
       }}>
         <Stack.Screen name="index" options={{ title: 'User Account' }} />
        </Stack>
@@ -34,29 +30,12 @@ const CartLayout = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  header: {
-    padding: 20,
-    backgroundColor: '#291735',
-    alignItems: 'center',
-  },
-  headerText: {
-    fontSize: 24,
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  subHeader: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingVertical: 10,
-    backgroundColor: '#388E3C',
-  },
-  link: {
-    padding: 10,
-  },
-  linkText: {
-    fontSize: 18,
-    color: '#fff',
+  }, 
+  ribbonStyle: {
+    position: 'absolute',
+     width: '100%',
+    zIndex: 10,  
   },
 });
 

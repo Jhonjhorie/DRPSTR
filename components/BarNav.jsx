@@ -17,7 +17,7 @@ const SideBarNav = ({ innerSidebar, activeName }) => {
   //Desktop
   if(innerSidebar){
   return (
-    <View className='z-30 flex flex-row justify-start  w-16 rounded-md  sticky left-2 mt-[25vh]'>
+    <View className='z-30 flex flex-row justify-start  w-16 rounded-md  sticky left-2  '>
       <Link
       href={'/'}
       className='group items-center flex h-full pl-1 bg-secondary-color px-2 hover:bg-primary-color hover:px-3 w-16 rounded-md duration-300 transition-all'
